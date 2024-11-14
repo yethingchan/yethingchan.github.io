@@ -4,27 +4,23 @@
   
   
   <entry>
-    <title>一线互联网Java面试核心点</title>
-    <link href="/posts/20241114144426.html"/>
-    <url>/posts/20241114144426.html</url>
+    <title>突发奇想</title>
+    <link href="/posts/2409698136.html"/>
+    <url>/posts/2409698136.html</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>一线互联网Java面试核心点(100万字)</p><p>本面试宝典是<a href="https://www.processon.com/view/link/617be37ee0b34d7894fcf545">图灵课堂</a>老师从一百多套最新一线互联网公司面试题中精选而出，涵盖Java面试高频的所有技术栈，包括Java基础，并发编程，JVM，Mysql，Spring，Mybatis，Redis，MQ，Zookeeper，Netty，Dubbo，Spring Boot，Spring Cloud，数据结构与算法，设计模式，网络与操作系统，三高架构，线上疑难问题，大厂面试场景题，项目亮点和难点，K8S云原生等近30个相关技术领域的大厂面试题及详解。  </p><p>面试必看</p><p>系列篇</p><p>综合篇</p><p>Java基础</p><p>并发编程</p><p>JVM</p><p>Mysql</p><p>Spring</p><p>SpringBoot</p><p>MyBatis</p><p>Redis</p><p>SpringCloud</p><p>ElasticSearch</p><p>网络专题</p><p>Netty</p><p>Zookeeper</p><p>Rocketmq</p><p>Kafka</p><p>RabbitMQ</p><p>Nginx</p><p>Dubbo</p><p>分布式</p><p>分库分表</p><p>设计模式</p><p><a href="https://www.yuque.com/dashboard"></a><a href="https://www.yuque.com/tulingzhouyu" title="图灵课堂">图灵课堂</a></p><p>一线互联网Java面试核心点(100万字)</p><p>搜索Ctrl + J</p><p>首页</p><p>目录</p><p>Dubbo</p><p>分布式</p><p>分库分表</p><p>设计模式</p><p>DDD架构</p><p>线上问题排查</p><p>[</p><p>线上问题的排查思路</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/fgmmd6vgdbkxeug6">https://www.yuque.com/tulingzhouyu/db22bv/fgmmd6vgdbkxeug6</a>)</p><p>[</p><p>Java死锁问题如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/hmdc25fizw0n6hlr">https://www.yuque.com/tulingzhouyu/db22bv/hmdc25fizw0n6hlr</a>)</p><p>[</p><p>慢SQL问题如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/rsi9rvh2i9xp0iav">https://www.yuque.com/tulingzhouyu/db22bv/rsi9rvh2i9xp0iav</a>)</p><p>[</p><p>文件导入导出导致内存溢出如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/bge6y0bkwbd07awu">https://www.yuque.com/tulingzhouyu/db22bv/bge6y0bkwbd07awu</a>)</p><p>[</p><p>频繁FullGC问题如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/itakbe1872na814s">https://www.yuque.com/tulingzhouyu/db22bv/itakbe1872na814s</a>)</p><p>[</p><p>OOM问题如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/bgpy80cw6x7fntek">https://www.yuque.com/tulingzhouyu/db22bv/bgpy80cw6x7fntek</a>)</p><p>[</p><p>CPU飙高问题如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/xg9cvfe5n3fmv2t4">https://www.yuque.com/tulingzhouyu/db22bv/xg9cvfe5n3fmv2t4</a>)</p><p>[</p><p>MySQL死锁问题如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/lgaw0d9podklhr3e">https://www.yuque.com/tulingzhouyu/db22bv/lgaw0d9podklhr3e</a>)</p><p>[</p><p>MySQL数据库连接池爆满如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/gn5d62blxrrrftko">https://www.yuque.com/tulingzhouyu/db22bv/gn5d62blxrrrftko</a>)</p><p>[</p><p>Java进程突然挂了如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/cki480fe533m84ng">https://www.yuque.com/tulingzhouyu/db22bv/cki480fe533m84ng</a>)</p><p>[</p><p>线上系统接口响应很慢如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/niixxv18pw7a6fbb">https://www.yuque.com/tulingzhouyu/db22bv/niixxv18pw7a6fbb</a>)</p><p>[</p><p>线上系统突然响应缓慢如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/xp0otgookk80nht4">https://www.yuque.com/tulingzhouyu/db22bv/xp0otgookk80nht4</a>)</p><p>[</p><p>高并发线程安全问题如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/om2n0vvxqsk4gakb">https://www.yuque.com/tulingzhouyu/db22bv/om2n0vvxqsk4gakb</a>)</p><p>[</p><p>线上大量错误日志如何排查</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/zlqy8guampf8k5hv">https://www.yuque.com/tulingzhouyu/db22bv/zlqy8guampf8k5hv</a>)</p><p>[</p><p>线上大规模故障时如何处理与恢复</p><p>](<a href="https://www.yuque.com/tulingzhouyu/db22bv/uhlnmen9sq92nr1v">https://www.yuque.com/tulingzhouyu/db22bv/uhlnmen9sq92nr1v</a>)</p><p>Adblocker</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>记录自己的一些突发奇想</p><span id="more"></span><hr><p>发现自己没有毛哥 丽姐那样的面对困难的心态，自己的这个逆商不太行，很容易崩溃。<br>很多焦虑是自己给自己树立了，很多困难也是，但是很多事情需要自己去和自己和解协调才能帮助自己走出那一步。光是独立这节课就够学习很久，自己独立成为一个个人，才能让自己以后走的每一步都会更加坚定自信。<br>如果自己以后自己走不出来，就暂时跳出自己的框架，去花点时间好好消化。</p>]]></content>
     
     
     <categories>
       
-      <category>Java</category>
+      <category>人生体验</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>Java</tag>
-      
-      <tag>八股文</tag>
-      
-      <tag>语雀</tag>
+      <tag>胡言乱语</tag>
       
     </tags>
     
@@ -307,7 +303,7 @@
     <link href="/posts/1289796624.html"/>
     <url>/posts/1289796624.html</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>此处放一些个人收藏的技术网站，等待以后有时间自己沉淀技术博客文章</p><span id="more"></span><p><strong><a href="https://www.wdbyte.com/">未读代码</a></strong></p><p><strong><a href="https://www.yuque.com/vip6688/neho4x">Java八股文</a></strong></p><p><strong><a href="https://liaoxuefeng.com/books/java/introduction/index.html">廖雪峰官方网站</a></strong></p><p><strong><a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg4MjU0OTM1OA==&amp;action=getalbum&amp;album_id=1664731708878848004&amp;scene=21#wechat_redirect">精通JVM系列</a></strong></p><p><strong><a href="https://www.cnkirito.moe/categories/">徐靖峰|个人博客</a></strong></p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>此处放一些个人收藏的技术网站，等待以后有时间自己沉淀技术博客文章</p><span id="more"></span><p><strong><a href="https://www.yuque.com/tulingzhouyu/db22bv/dwrlxcihwh7r3grg">一万字Java面经</a></strong></p><p><strong><a href="https://www.wdbyte.com/">未读代码</a></strong></p><p><strong><a href="https://www.yuque.com/vip6688/neho4x">Java八股文</a></strong></p><p><strong><a href="https://liaoxuefeng.com/books/java/introduction/index.html">廖雪峰官方网站</a></strong></p><p><strong><a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg4MjU0OTM1OA==&amp;action=getalbum&amp;album_id=1664731708878848004&amp;scene=21#wechat_redirect">精通JVM系列</a></strong></p><p><strong><a href="https://www.cnkirito.moe/categories/">徐靖峰|个人博客</a></strong></p>]]></content>
     
     
     <categories>
