@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>短期数学总结</title>
+    <link href="/posts/2847308077.html"/>
+    <url>/posts/2847308077.html</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>总结自己短期学习</p><span id="more"></span><h1 id="基础系数"><a href="#基础系数" class="headerlink" title="基础系数"></a>基础系数</h1><ul><li>基础解系定义<ul><li>x=0的解向量（存疑）</li><li>是线性无关的</li><li>线性无关的向量个数 = 自由未知量的个数</li></ul></li><li>基础解系中 含有解向量的个数就是自由未知量的个数</li><li>秩 应该是能够凑成最大nxn的矩阵，如果只有一行或者一列，那么最多只能凑成1x1 ，即秩为1；</li><li>存在基础解系 -&gt; 含有非零解</li><li>不存在基础解系 -&gt; 唯一的解（零解） -&gt; 满秩矩阵</li><li>进行矩阵行列式运算时，左上角不是 <strong>1</strong>就是 <strong>-1</strong></li><li>注意计算认真，此处特别容易丢三落四</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>高数</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数学</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java大纲</title>
     <link href="/posts/2302726656.html"/>
     <url>/posts/2302726656.html</url>
@@ -186,9 +211,9 @@
     
     <tags>
       
-      <tag>高数</tag>
-      
       <tag>数学</tag>
+      
+      <tag>高数</tag>
       
     </tags>
     
