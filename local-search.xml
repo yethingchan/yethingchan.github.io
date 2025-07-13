@@ -4,6 +4,58 @@
   
   
   <entry>
+    <title>Linux</title>
+    <link href="/posts/1406167115.html"/>
+    <url>/posts/1406167115.html</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Linux有关知识点</p><span id="more"></span><h3 id="目录结构说明"><a href="#目录结构说明" class="headerlink" title="目录结构说明"></a>目录结构说明</h3><hr><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">/  # 根目录（所有目录的起点）<br>├── bin/            # 基础命令（ls、cp 等，所有用户可执行）<br>├── sbin/           # 系统管理命令（reboot、ifconfig 等，root 专用）<br>├── usr/            # 用户程序和数据（类似 Windows 的 Program Files）<br>│   ├── bin/        # 非启动必需的用户命令（如 wget、vim）<br>│   ├── sbin/       # 非启动必需的系统命令<br>│   ├── lib/        # 程序依赖的库文件<br>│   ├── lib64/      # 64位程序的库文件<br>│   └── share/      # 共享数据（文档、语言包等）<br>├── etc/            # 系统配置文件（服务配置、用户信息等）<br>│   ├── sysconfig/  # 系统服务配置（网络、防火墙等）<br>│   ├── nginx/      # Nginx 服务配置（示例）<br>│   └── passwd      # 用户账号信息<br>├── var/            # 动态变化的文件（日志、缓存等）<br>│   ├── log/        # 系统和程序日志（如 /var/log/messages）<br>│   ├── lib/        # 服务运行数据（如数据库文件）<br>│   └── tmp/        # 服务临时文件<br>├── tmp/            # 临时文件（重启后清空）<br>├── boot/           # 启动文件（内核、grub 引导程序）<br>├── dev/            # 设备文件（硬盘、终端等，如 /dev/sda）<br>├── proc/           # 虚拟文件系统（实时进程、内存信息等）<br>├── sys/            # 虚拟文件系统（硬件设备管理）<br>├── lib/            # 系统共享库（类似 .dll 文件）<br>├── lib64/          # 64位系统共享库<br>├── mnt/            # 临时挂载外部设备（U盘、移动硬盘）<br>├── media/          # 自动挂载的外部设备（如光盘）<br>├── opt/            # 第三方软件安装目录（如 /opt/redis）<br>└── home/           # 普通用户家目录<br>    ├── user1/      # 用户 user1 的家目录（等价于 ~）<br>    └── user2/      # 用户 user2 的家目录<br>└── root/           # root 用户的家目录（等价于 ~，root 专属）<br></code></pre></td></tr></tbody></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>操作系统</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Redis</title>
+    <link href="/posts/3135569683.html"/>
+    <url>/posts/3135569683.html</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Redis学习记录</p><ul><li><a href="https://redis.io/docs/latest/commands/">Redis官方文档</a><span id="more"></span></li></ul><h3 id="Sql与Nosql区别"><a href="#Sql与Nosql区别" class="headerlink" title="Sql与Nosql区别"></a>Sql与Nosql区别</h3><p><img src="/../images/img-20250712101415422.png"><br><img src="/../images/img-20250712101506072.png"></p><h3 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h3><p><img src="/../images/img-20250712102231830.png"></p><h3 id="安装redis"><a href="#安装redis" class="headerlink" title="安装redis"></a>安装redis</h3><ul><li>如何看redis是否已经运行  <ul><li>ps -ef | grep redis</li></ul></li></ul><h3 id="Redis的value类型"><a href="#Redis的value类型" class="headerlink" title="Redis的value类型"></a>Redis的value类型</h3><hr><h2 id="帮助：在redis-cli中输：help-然后按tab键进行切换-常用命令-过期时间中-1是永久存在，-2是已经到期-String类型"><a href="#帮助：在redis-cli中输：help-然后按tab键进行切换-常用命令-过期时间中-1是永久存在，-2是已经到期-String类型" class="headerlink" title="- 帮助：在redis-cli中输：help @   然后按tab键进行切换### 常用命令- - 过期时间中 -1是永久存在，-2是已经到期### String类型"></a><img src="/../images/img-20250712153158316.png"><br>- 帮助：在redis-cli中输：<code>help @</code>   然后按tab键进行切换<br>### 常用命令<br>- <img src="/../images/img-20250712155638415.png"><br>- 过期时间中 -1是永久存在，-2是已经到期<br>### String类型</h2><ul><li><img src="/../images/img-20250712155847615.png"></li><li>常见命令<img src="/../images/img-20250712155910384.png"><ul><li>incrbyfloat没有默认增长，后面必须要加增长多少，没有默认增长</li><li>setNx是新增不存在的<ul><li><code>set name zhangsan nx</code>和<code>setNx name zhangsan</code>效果是一样的</li></ul></li><li>setEx<ul><li><code>setex name 10 Jack</code>跟<code>set name Jack  ex 19</code>效果是一样的</li></ul></li><li>DEL 删除，并且可以批量删除</li></ul></li></ul><h4 id="Key的结构"><a href="#Key的结构" class="headerlink" title="Key的结构"></a>Key的结构</h4><hr><p><img src="/../images/img-20250712161619523.png"><br><img src="/../images/img-20250712161658256.png"></p><h3 id="Hash类型"><a href="#Hash类型" class="headerlink" title="Hash类型"></a>Hash类型</h3><hr><p><img src="/../images/img-20250712162223357.png"><br><img src="/../images/img-20250712162248829.png"></p><ul><li>HMset：set的时候可以把键放在前面，然后面直接就是多个kv kv kv</li><li>HMget：get的时候可以把所有的键写下来，k k k k </li><li>HgetALL：直接写顶级的，一级key，就能把所有的子集数据展示出来</li><li>HsetNx：是判断field存不存在，不是顶级key了</li></ul><h3 id="List类型"><a href="#List类型" class="headerlink" title="List类型"></a>List类型</h3><p><img src="/../images/img-20250712163905276.png"><br><img src="/../images/img-20250712164102165.png"></p><ul><li>BLPOP中的B是block，阻塞的意思</li><li><img src="/../images/img-20250712164821403.png"></li><li><img src="/../images/img-20250712164541380.png"></li><li>BLPOP的语法是 BLPOP  [key]  [timeout]，就是如果找不到就一直阻塞在那边，如果在阻塞的同时添加一个键进去，那边阻塞立马就会结束并且返回键中的最L值，同理BRPOP也是如此</li></ul><h3 id="Set类型"><a href="#Set类型" class="headerlink" title="Set类型"></a>Set类型</h3><hr><ul><li><img src="/../images/img-20250713100649155.png"></li><li><img src="/../images/img-20250713100944165.png"></li></ul><h3 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h3><hr><p><img src="/../images/img-20250713102147526.png"><br><img src="/../images/img-20250713102201003.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据库</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数据库</tag>
+      
+      <tag>Redis</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java开发细节</title>
     <link href="/posts/496186698.html"/>
     <url>/posts/496186698.html</url>
@@ -410,9 +462,9 @@
     
     <tags>
       
-      <tag>Java</tag>
-      
       <tag>Planning</tag>
+      
+      <tag>Java</tag>
       
     </tags>
     
