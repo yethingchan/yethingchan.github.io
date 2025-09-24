@@ -152,14 +152,18 @@
     
     <categories>
       
-      <category>目录</category>
+      <category>剪辑</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>标签</tag>
+      <tag>学习笔记</tag>
+      
+      <tag>剪辑</tag>
+      
+      <tag>影视飓风</tag>
       
     </tags>
     
@@ -177,14 +181,14 @@
     
     <categories>
       
-      <category>目录</category>
+      <category>笔记</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>标签</tag>
+      <tag>Java</tag>
       
     </tags>
     
@@ -319,9 +323,9 @@
     
     <tags>
       
-      <tag>IO流</tag>
-      
       <tag>Java</tag>
+      
+      <tag>IO流</tag>
       
     </tags>
     
@@ -921,7 +925,7 @@
     
     <tags>
       
-      <tag>标签</tag>
+      <tag>体验</tag>
       
     </tags>
     
