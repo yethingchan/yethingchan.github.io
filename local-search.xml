@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>CPU</title>
+    <link href="/posts/740758180.html"/>
+    <url>/posts/740758180.html</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>记录CPU相关信息</p><span id="more"></span><h2 id="HWMonitor如何查看CPU温度"><a href="#HWMonitor如何查看CPU温度" class="headerlink" title="HWMonitor如何查看CPU温度"></a>HWMonitor如何查看CPU温度</h2><ul><li><img src="/../images/img-20250925105220624.png"></li></ul><h3 id="🔑-温度区域"><a href="#🔑-温度区域" class="headerlink" title="🔑 温度区域"></a>🔑 温度区域</h3><p>在 <strong>Temperatures</strong>（温度）这一栏，你可以看到多行数据，例如：</p><table><thead><tr><th>项目</th><th>说明</th><th>看哪个数值</th></tr></thead><tbody><tr><td><strong>Cores (Max)</strong></td><td>CPU 核心温度（核心平均值/最高核心）</td><td><strong>最关键</strong>，这是 CPU 的核心温度。</td></tr><tr><td><strong>Package</strong></td><td>CPU 整体封装温度（外壳/总温度）</td><td>也很重要，用来判断整体散热情况。</td></tr><tr><td><strong>L3 Cache</strong></td><td>CPU 三缓的温度</td><td>仅供参考。</td></tr><tr><td><strong>GFX</strong></td><td>CPU 内置核显的温度</td><td>如果用核显才关注。</td></tr><tr><td><strong>SoC</strong></td><td>系统芯片部分温度（内存控制器等）</td><td>辅助参考。</td></tr></tbody></table><hr><h3 id="📊-三列数据的含义"><a href="#📊-三列数据的含义" class="headerlink" title="📊 三列数据的含义"></a>📊 三列数据的含义</h3><p>HWMonitor 每一行右边通常有 <strong>三个数值</strong>（你的截图是这样）：</p><ul><li><p><strong>Current</strong>：<strong>当前实时温度</strong>（随负载变化）</p></li><li><p><strong>Min</strong>：本次启动以来的<strong>最低温度</strong></p></li><li><p><strong>Max</strong>：本次启动以来的<strong>最高温度</strong></p></li></ul><p>例如：</p><p><code>Cores (Max): 41.0 °C | 40.3 °C | 55.1 °C</code></p><ul><li><p><strong>41.0</strong> → 当前温度</p></li><li><p><strong>40.3</strong> → 这次开机后最低温度</p></li><li><p><strong>55.1</strong> → 这次开机后最高温度（峰值）</p></li></ul><hr><h3 id="🟢-正常范围参考"><a href="#🟢-正常范围参考" class="headerlink" title="🟢 正常范围参考"></a>🟢 正常范围参考</h3><ul><li><p><strong>待机/轻度使用</strong>：30~50℃ → 很健康</p></li><li><p><strong>中等负载</strong>（办公/看视频）：50~70℃ → 正常</p></li><li><p><strong>高负载/游戏</strong>：70~85℃ → 可以接受</p></li><li><p><strong>&gt;90℃</strong> → 需要注意散热（清灰/换硅脂/加风扇）</p></li></ul><p>你的截图中：</p><ul><li><p><strong>Cores 当前 41℃，最高 55℃</strong> → 非常安全，散热很好。</p></li><li><p><strong>Package 当前 44℃</strong> → 也非常正常。</p></li></ul><hr><h3 id="💡使用技巧"><a href="#💡使用技巧" class="headerlink" title="💡使用技巧"></a>💡使用技巧</h3><ol><li><p><strong>只看 CPU 温度</strong>：<br> 关注 <strong>Cores (Max)</strong> 和 <strong>Package</strong> 两行就够了。</p></li><li><p><strong>监控最高温</strong>：<br> 如果要测试散热，可以运行游戏/压力测试，然后看 <strong>Max</strong> 列，评估峰值。</p></li><li><p><strong>长时间记录</strong>：<br> 想要保存温度曲线，可以用 <strong>HWiNFO</strong> 或者 HWMonitor Pro 版本来记录。</p></li></ol><h2 id="HWiNFO64长期监控CPU温度"><a href="#HWiNFO64长期监控CPU温度" class="headerlink" title="HWiNFO64长期监控CPU温度"></a>HWiNFO64长期监控CPU温度</h2><h3 id="✅-1️⃣-打开传感器窗口（实时曲线）"><a href="#✅-1️⃣-打开传感器窗口（实时曲线）" class="headerlink" title="✅ 1️⃣ 打开传感器窗口（实时曲线）"></a>✅ 1️⃣ 打开传感器窗口（实时曲线）</h3><ol><li><p><strong>启动 HWiNFO64</strong> 时，在启动弹窗选择<br> <strong>「Sensors-only」</strong>（只监控传感器）→ 点击 <strong>Run</strong>。</p><blockquote><p>如果已经进入主界面：<br>点击左上角的<strong>齿轮图标</strong> 或菜单栏 <strong>Sensors</strong>。 </p></blockquote></li><li><p>进入后会看到一长串硬件传感器数据。</p><ul><li><p>找到 <strong>CPU [你的型号]</strong> 区域</p></li><li><p>重点看 <code>CPU (Tctl/Tdie)</code>、<code>CPU Die (Average)</code>、<code>Core Temperatures</code> 这些字段</p></li><li><p>列里通常显示 <strong>Current / Minimum / Maximum / Average</strong> 温度</p></li></ul></li><li><p>右击对应的温度项目 → <strong>Show Graph</strong></p><ul><li><p>弹出的窗口会显示<strong>实时折线图</strong>，可以放在桌面角落长期观察。</p></li><li><p>可以右击图表 → <strong>Always on Top</strong> 保持最前。</p></li></ul></li></ol><hr><h3 id="✅-2️⃣-记录日志（长时间保存数据）"><a href="#✅-2️⃣-记录日志（长时间保存数据）" class="headerlink" title="✅ 2️⃣ 记录日志（长时间保存数据）"></a>✅ 2️⃣ 记录日志（长时间保存数据）</h3><p>如果你想保存几小时甚至几天的温度变化，方便后续分析：</p><ol><li><p>在 <strong>Sensors</strong> 窗口左下角，点击 <strong>Logging</strong> 按钮（小磁盘图标）。</p></li><li><p>选择保存路径和文件名（CSV 格式）。</p></li><li><p>点击 <strong>Start</strong> 开始记录。</p><ul><li>HWiNFO 会把所有传感器（包括 CPU 温度）按时间写入文件。</li></ul></li><li><p>结束时点击 <strong>Stop</strong>。</p><ul><li>CSV 文件可用 Excel、LibreOffice 或数据分析工具绘制曲线。</li></ul></li></ol><hr><h3 id="🔍-温度范围参考（Ryzen-9-7940HS）"><a href="#🔍-温度范围参考（Ryzen-9-7940HS）" class="headerlink" title="🔍 温度范围参考（Ryzen 9 7940HS）"></a>🔍 温度范围参考（Ryzen 9 7940HS）</h3><ul><li><p><strong>待机/轻负载</strong>：35–55 °C</p></li><li><p><strong>中高负载</strong>：70–85 °C</p></li><li><p><strong>短时间高负载峰值</strong>：可到 90 °C 左右（TjMax 约 105 °C）</p></li></ul><hr><h4 id="💡实用小技巧"><a href="#💡实用小技巧" class="headerlink" title="💡实用小技巧"></a>💡实用小技巧</h4><ul><li><p>如果只想看一个小窗口：<br>  右击任何温度行 → <strong>Add to Tray</strong>，可在系统托盘常驻实时显示。</p></li><li><p>想监控多个参数：<br>  多开几个 <strong>Show Graph</strong>，分别显示温度、频率、功耗。</p></li></ul><hr><p><strong>总结</strong>：<br>👉 <strong>Sensors 窗口</strong> 是实时+长期观察的核心入口。<br>👉 <strong>Show Graph</strong> = 即时曲线；<br>👉 <strong>Logging</strong> = 长时间保存数据。<br>只要保持 HWiNFO 运行，CPU 温度变化就能完整记录下来。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>电脑硬件</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CPU</tag>
+      
+      <tag>电脑硬件</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LR</title>
     <link href="/posts/2557485614.html"/>
     <url>/posts/2557485614.html</url>
@@ -93,7 +120,7 @@
     <link href="/posts/357437766.html"/>
     <url>/posts/357437766.html</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>CAD学习笔记</p><span id="more"></span><h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><hr><h3 id="别人整理"><a href="#别人整理" class="headerlink" title="别人整理"></a>别人整理</h3><ul><li><img src="/../images/img-20250924195700839.png"></li></ul><h3 id="自己整理"><a href="#自己整理" class="headerlink" title="自己整理"></a>自己整理</h3><ul><li>F7 -  图形格栅</li><li>F8 -  让每一根线都是直线</li><li>F9 - 捕捉模式（方便选取端点）</li><li>F10 - 极轴追踪 (极轴就是正在画的线的第二个点和以画的线（点的相）)</li></ul>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>CAD学习笔记</p><span id="more"></span><h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><hr><h3 id="别人整理"><a href="#别人整理" class="headerlink" title="别人整理"></a>别人整理</h3><h4 id="图一"><a href="#图一" class="headerlink" title="图一"></a>图一</h4><ul><li><img src="/../images/img-20250924195700839.png"></li></ul><h4 id="图二"><a href="#图二" class="headerlink" title="图二"></a>图二</h4><p><img src="/../images/img-20250924211449534.png"></p><h3 id="自己整理"><a href="#自己整理" class="headerlink" title="自己整理"></a>自己整理</h3><ul><li>F7 -  图形格栅</li><li>F8 -  让每一根线都是直线</li><li>F9 - 捕捉模式（方便选取端点）</li><li>F10 - 极轴追踪 (极轴就是正在画的线的第二个点和以画的线（点的相）)</li></ul>]]></content>
     
     
     <categories>
@@ -323,9 +350,9 @@
     
     <tags>
       
-      <tag>Java</tag>
-      
       <tag>IO流</tag>
+      
+      <tag>Java</tag>
       
     </tags>
     
