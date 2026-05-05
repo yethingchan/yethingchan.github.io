@@ -1,4 +1,4 @@
-baseURL = 'https://yethingchan/yethingchan.github.io/'
+baseURL = 'https://yethingchan.github.io/'
 locale = 'zh-CN'
 title = ' Odyssey Blog'
 theme = 'hugo-PaperMod-master'
