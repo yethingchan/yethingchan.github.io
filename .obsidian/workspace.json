@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/posts/a4.md",
+                "file": "archetypes/default.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "a4"
+              "title": "default"
             }
           }
         ]
@@ -182,21 +182,24 @@
   },
   "active": "853f4be2a386588f",
   "lastOpenFiles": [
-    "content/posts/a2.md",
+    "public/search/index.html",
+    "public/search",
+    "public/assets/js/search.e229e8d51c221f102254c8cc8c10b254d8f4faf0a0141b78d4827f9d925d6541.js",
+    "public/assets/js",
+    "public/posts/a4/index.html",
+    "public/posts/a4",
+    "public/categories/categories/index.html",
+    "public/categories/categories",
+    "public/favicon.ico",
     "content/posts/a4.md",
-    "public/posts/a3/index.html",
-    "public/posts/a3",
+    "static/favicon.ico",
+    "content/categories/categories.md",
+    "content/categories",
+    "content/search.md",
+    "content/posts/a2.md",
     "content/posts/a3.md",
     "content/posts/a1.md",
     "archetypes/default.md",
-    "public/posts/a1/index.html",
-    "public/posts/a1",
-    "public/page/1/index.html",
-    "public/page/1",
-    "public/page",
-    "public/posts/page/1/index.html",
-    "public/posts/page/1",
-    "public/posts/page",
     "themes/hugo-PaperMod-master/README.md",
     "themes/hugo-PaperMod-master/images/tn.png",
     "themes/hugo-PaperMod-master/images/screenshot.png",
