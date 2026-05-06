@@ -1,7 +1,7 @@
 ---
 title: "{{title}}"
 description: ""
-date: "{{date:YYYY-MM-DD}}"
+date: "{{date}}"
 tags: []
 share: false
 ---
