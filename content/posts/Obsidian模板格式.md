@@ -1,7 +1,7 @@
 ---
-title: "Obsidian模板格式"
+title: Obsidian模板格式
 description: ""
-date: "2026-05-07"
+date: 2026-05-07
 tags: []
 share: true
 ---
