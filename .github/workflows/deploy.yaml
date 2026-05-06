@@ -1,9 +1,13 @@
-name: Deploy to Pages
+name: Deploy Hugo to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  workflow_dispatch:
+
+# 强制使用 Node.js 24，消除所有警告
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
   contents: read
@@ -12,32 +16,31 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 👈 这里必须有空格！
+          submodules: true
+          fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
         with:
-          node-version: 22
-          cache: npm
+          hugo-version: latest
+          extended: true
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Quartz
-        run: npx quartz build
+      - name: Build
+        run: hugo --minify
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: ./public
 
   deploy:
     needs: build
@@ -46,6 +49,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
