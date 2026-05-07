@@ -1,12 +1,12 @@
 ---
-title: "PcbStockNetCore_HuaTian"
+title: PcbStockNetCore_HuaTian
 description: ""
-date: "2026-05-07"
+date: 2026-05-07
 tags: []
 share: true
 ---
 # 项目结构
-- ![[Pasted image 20260419164521.png]]
+- ![[Pasted image 20260419164521.png|Pasted image 20260419164521.png]]
 
 # DB
 ---
@@ -30,16 +30,16 @@ share: true
 ### Classes
 
 #### AesEncryptionAndDecryption
-- **[[AesEncryptionAndDecryption]]**
+- **[[AesEncryptionAndDecryption|AesEncryptionAndDecryption]]**
 
 #### AppSettingHelper
-- **[[AppSettingHelper]]**
+- **[[AppSettingHelper|AppSettingHelper]]**
 
 #### ImageForBase64
-- **[[ImageForBase64]]**
+- **[[ImageForBase64|ImageForBase64]]**
 
 #### RestClient
-- **[[RestClient]]**
+- **[[RestClient|RestClient]]**
 
 
 ### Controllers
@@ -61,13 +61,13 @@ share: true
 ##### TailBag
 ---
 ##### AlarmAcceptController
-- **[[AlarmAcceptController]]**
+- **[[AlarmAcceptController|AlarmAcceptController]]**
 ##### AlarmListController.cs
 - getAlarmList的查询
 ##### CheckLineController.cs
 
 ##### CheckUserController.cs
-- **[[CheckUserController.cs]]**
+- **[[CheckUserController.cs|CheckUserController.cs]]**
 ##### CreationAlarmController.cs
 
 ##### DeleteAlarmController.cs
