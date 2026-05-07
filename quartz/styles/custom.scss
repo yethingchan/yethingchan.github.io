@@ -86,25 +86,28 @@ pre::-webkit-scrollbar-thumb:hover {
   background: rgba(148, 163, 184, 0.78);
 }
 
-
 /* ==============================
-   Mooi Blog - Simple Background
+   Mooi Blog - Background
    暗色：科技赛博朋克
-   亮色：明亮暖白
+   亮色：暖白简洁
    ============================== */
 
 html,
 body {
   min-height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
-  background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-/* 暗色模式：深蓝黑 + 蓝紫科技光晕 */
+/* 暗色模式 */
 :root[saved-theme="dark"] body {
   background:
     radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.18), transparent 28rem),
@@ -113,7 +116,7 @@ body {
     linear-gradient(135deg, #050816 0%, #08111f 45%, #111827 100%);
 }
 
-/* 亮色模式：明亮暖白，不带蓝色光感 */
+/* 亮色模式 */
 :root[saved-theme="light"] body {
   background:
     radial-gradient(circle at 16% 10%, rgba(255, 255, 255, 0.95), transparent 28rem),
@@ -122,17 +125,18 @@ body {
     linear-gradient(135deg, #ffffff 0%, #fafafa 50%, #f6f6f4 100%);
 }
 
-/* 暗色模式：正文区域轻微玻璃卡片感 */
+/* ==============================
+   Article Card
+   ============================== */
+
 :root[saved-theme="dark"] article {
   background: rgba(8, 13, 28, 0.56);
   border-radius: 16px;
   border: 1px solid rgba(148, 163, 184, 0.14);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
-  // padding: 1.8rem 2.2rem;
   padding: 1rem 2rem;
 }
 
-/* 亮色模式：正文区域干净白色卡片感 */
 :root[saved-theme="light"] article {
   background: rgba(255, 255, 255, 0.78);
   border-radius: 16px;
@@ -141,57 +145,425 @@ body {
   padding: 1rem 2rem;
 }
 
-/* 暗色模式：标题轻微科技光效 */
+/* 标题效果 */
+
 :root[saved-theme="dark"] article h1 {
   text-shadow: 0 0 22px rgba(34, 211, 238, 0.12);
 }
 
-/* 亮色模式：标题保持清爽 */
 :root[saved-theme="light"] article h1 {
   text-shadow: none;
 }
 
-/* =========================
+/* ==============================
    Mobile Fix
-   仅修复手机端左右空白
-========================= */
+   修复手机端左右空白
+   ============================== */
 
 @media (max-width: 800px) {
 
-  /* 修复顶部左右黑边 */
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+  }
+
+  body {
+    background-attachment: scroll !important;
+  }
+
+  /* Quartz 主布局修复 */
   .page,
+  #quartz-body,
   .center,
-  header {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+  main,
+  article,
+  header,
+  footer {
     width: 100% !important;
     max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     box-sizing: border-box;
   }
 
-  /* 修复左侧目录抽屉空隙 */
+  /* 文章区域 */
+  article {
+    padding: 1rem !important;
+    border-radius: 0 !important;
+  }
+
+  /* Sidebar */
   .sidebar.left {
     left: 0 !important;
     margin-left: 0 !important;
   }
 
-  /* 修复 fixed background 在手机端导致的边缘问题 */
-  body {
-    background-attachment: scroll !important;
+  /* 代码块防止撑爆 */
+  pre {
+    max-width: 100%;
+    padding: 1rem !important;
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+
+  pre code {
+    white-space: pre;
+  }
+
+  /* 图片防止超宽 */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 表格防止超宽 */
+  table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
   }
 }
 
+/* ==============================
+   Font
+   ============================== */
 
-
-// 字体配置
-// =====================================
 @font-face {
   font-family: "LXGWWenKaiScreenR";
   src: url("/static/fonts/LXGWWenKaiScreen.woff2") format("woff2");
   font-display: swap;
 }
-body, .quartz-content,h1-h6 {
+
+body,
+.quartz-content,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "LXGWWenKaiScreenR" !important;
+}
+
+
+
+
+/* ==============================
+   Apple Liquid Glass Buttons
+   ============================== */
+
+#scroll-toggle,
+#toc-toggle {
+  position: fixed;
+  right: 1.2rem;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 999999;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  color: rgba(255, 255, 255, 0.92);
+
+  /* Liquid Glass */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.22),
+      rgba(255, 255, 255, 0.08)
+    );
+
+  backdrop-filter:
+    blur(24px)
+    saturate(180%);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(180%);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.22),
+    inset 0 -1px 1px rgba(255,255,255,0.05),
+    0 10px 30px rgba(0,0,0,0.18);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+/* 顶部高光 */
+
+#scroll-toggle::before,
+#toc-toggle::before {
+  content: "";
+
+  position: absolute;
+
+  top: 6%;
+  left: 10%;
+
+  width: 80%;
+  height: 42%;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.32),
+      rgba(255,255,255,0.02)
+    );
+
+  pointer-events: none;
+}
+
+/* Hover */
+
+#scroll-toggle:hover,
+#toc-toggle:hover {
+  transform:
+    translateY(-2px)
+    scale(1.04);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.28),
+      rgba(255,255,255,0.12)
+    );
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.24),
+    inset 0 -1px 1px rgba(255,255,255,0.06),
+    0 14px 36px rgba(0,0,0,0.22);
+}
+
+/* Active */
+
+#scroll-toggle:active,
+#toc-toggle:active {
+  transform: scale(0.96);
+}
+
+/* TOC Button */
+
+#toc-toggle {
+  bottom: 5.8rem;
+  font-size: 1.1rem;
+}
+
+/* Scroll Button */
+
+#scroll-toggle {
+  bottom: 1.6rem;
+}
+
+#scroll-icon {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ==============================
+   Floating TOC Panel
+   ============================== */
+
+#floating-toc {
+  position: fixed;
+
+  right: 1.2rem;
+  bottom: 9.8rem;
+
+  width: 260px;
+  max-height: 60vh;
+
+  overflow-y: auto;
+
+  padding: 1rem;
+
+  border-radius: 24px;
+
+  z-index: 999999;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform:
+    translateY(10px)
+    scale(0.98);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
+
+  /* Liquid Glass */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.18),
+      rgba(255,255,255,0.08)
+    );
+
+  backdrop-filter:
+    blur(30px)
+    saturate(180%);
+
+  -webkit-backdrop-filter:
+    blur(30px)
+    saturate(180%);
+
+  border: 1px solid rgba(255,255,255,0.16);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.18),
+    0 20px 40px rgba(0,0,0,0.22);
+}
+
+#floating-toc.show {
+  opacity: 1;
+  visibility: visible;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+/* 标题 */
+
+#floating-toc-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+
+  margin-bottom: 0.8rem;
+
+  color: rgba(255,255,255,0.96);
+}
+
+/* TOC Items */
+
+.toc-item {
+  display: block;
+
+  text-decoration: none;
+
+  padding: 0.48rem 0.7rem;
+
+  border-radius: 12px;
+
+  color: rgba(255,255,255,0.82);
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+
+  line-height: 1.5;
+}
+
+.toc-item:hover {
+  background: rgba(255,255,255,0.12);
+
+  color: rgba(255,255,255,1);
+
+  transform: translateX(2px);
+}
+
+/* 层级 */
+
+.toc-h1 {
+  padding-left: 0.3rem;
+  font-weight: 700;
+}
+
+.toc-h2 {
+  padding-left: 1rem;
+  font-size: 0.95rem;
+}
+
+.toc-h3 {
+  padding-left: 1.7rem;
+  font-size: 0.9rem;
+  opacity: 0.88;
+}
+
+/* ==============================
+   Light Mode
+   ============================== */
+
+:root[saved-theme="light"] #scroll-toggle,
+:root[saved-theme="light"] #toc-toggle,
+:root[saved-theme="light"] #floating-toc {
+
+  color: rgba(15,23,42,0.92);
+
+  border: 1px solid rgba(255,255,255,0.65);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.72),
+      rgba(255,255,255,0.42)
+    );
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.85),
+    0 12px 32px rgba(15,23,42,0.08);
+}
+
+:root[saved-theme="light"] .toc-item {
+  color: rgba(15,23,42,0.82);
+}
+
+:root[saved-theme="light"] .toc-item:hover {
+  background: rgba(255,255,255,0.52);
+  color: rgba(15,23,42,1);
+}
+
+:root[saved-theme="light"] #floating-toc-title {
+  color: rgba(15,23,42,0.95);
+}
+
+/* ==============================
+   Mobile
+   ============================== */
+
+@media (max-width: 800px) {
+
+  #scroll-toggle,
+  #toc-toggle {
+    width: 48px;
+    height: 48px;
+
+    right: 1rem;
+  }
+
+  #scroll-toggle {
+    bottom: 1rem;
+  }
+
+  #toc-toggle {
+    bottom: 4.8rem;
+  }
+
+  #floating-toc {
+    right: 1rem;
+    bottom: 8.4rem;
+
+    width: calc(100vw - 2rem);
+    max-width: 320px;
+  }
 }
