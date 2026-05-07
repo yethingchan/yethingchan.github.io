@@ -93,29 +93,15 @@ pre::-webkit-scrollbar-thumb:hover {
    亮色：明亮暖白
    ============================== */
 
-/* 1. 核心修复：重置默认边距，强制背景铺满 */
 html,
 body {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-  min-height: 100% !important;
-  overflow-x: hidden !important; /* 防止水平滚动条 */
-}
-
-/* 给HTML设置和body底层一致的背景，彻底消除黑边 */
-:root[saved-theme="dark"] html {
-  background: #050816 !important;
-}
-:root[saved-theme="light"] html {
-  background: #ffffff !important;
+  min-height: 100%;
 }
 
 body {
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: cover; /* 优化移动端背景适配 */
-  background-attachment: scroll; /* 替换fixed，解决iOS背景抖动/截断问题 */
 }
 
 /* 暗色模式：深蓝黑 + 蓝紫科技光晕 */
@@ -136,33 +122,13 @@ body {
     linear-gradient(135deg, #ffffff 0%, #fafafa 50%, #f6f6f4 100%);
 }
 
-/* 2. 强制Quartz所有容器撑满屏幕，移除默认边距 */
-#quartz-app,
-.site-header,
-.page,
-.sidebar {
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  background: transparent !important; /* 确保继承body的渐变背景 */
-}
-
-/* 移动端侧边栏额外适配 */
-.sidebar--mobile,
-.sidebar.is-open {
-  width: 100vw !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: transparent !important;
-}
-
 /* 暗色模式：正文区域轻微玻璃卡片感 */
 :root[saved-theme="dark"] article {
   background: rgba(8, 13, 28, 0.56);
   border-radius: 16px;
   border: 1px solid rgba(148, 163, 184, 0.14);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+  // padding: 1.8rem 2.2rem;
   padding: 1rem 2rem;
 }
 
@@ -185,53 +151,39 @@ body {
   text-shadow: none;
 }
 
-
-      /* =========================
-        Mobile Edge Fix
-        修复手机端左右黑边
-      ========================= */
+/* =========================
+   Mobile Fix
+   仅修复手机端左右空白
+========================= */
 
 @media (max-width: 800px) {
 
-  /* 整体页面容器取消边距 */
+  /* 修复顶部左右黑边 */
   .page,
   .center,
-  .popover,
-  .sidebar,
-  .sidebar.left,
-  .sidebar.right {
-    margin: 0 !important;
+  header {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    width: 100% !important;
     max-width: 100% !important;
-    width: 100% !important;
-  }
-
-  /* 顶部 Header 贴边 */
-  header,
-  .header,
-  .page-header {
-    margin: 0 !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    width: 100% !important;
     box-sizing: border-box;
   }
 
-  /* 左侧抽屉菜单 */
+  /* 修复左侧目录抽屉空隙 */
   .sidebar.left {
     left: 0 !important;
-    padding-left: 1rem !important;
-    box-sizing: border-box;
+    margin-left: 0 !important;
   }
 
-  /* 主内容区域 */
-  article {
-    margin-left: 0.5rem !important;
-    margin-right: 0.5rem !important;
-    width: auto !important;
+  /* 修复 fixed background 在手机端导致的边缘问题 */
+  body {
+    background-attachment: scroll !important;
   }
 }
+
+
 
 // 字体配置
 // =====================================
