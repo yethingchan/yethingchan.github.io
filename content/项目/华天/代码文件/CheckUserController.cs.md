@@ -1,7 +1,7 @@
 ---
-title: "CheckUserController.cs"
+title: CheckUserController.cs
 description: ""
-date: "2026-05-07"
+date: 2026-05-07
 tags: []
 share: true
 ---
@@ -114,4 +114,4 @@ foreach (var user in checkUserRepo)
 • 告诉你为什么不能直接返回数据库实体给前端
 
 # IEnumerable
-[[IEnumerable]]
+[[IEnumerable|IEnumerable]]
