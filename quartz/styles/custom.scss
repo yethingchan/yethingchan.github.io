@@ -1,3 +1,149 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+
+/* ==============================
+   Code Block Style
+   简洁代码块样式
+   ============================== */
+
+:not(pre) > code {
+  padding: 0.18rem 0.42rem;
+  margin: 0 0.08rem;
+  border-radius: 6px;
+  font-size: 0.88em;
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Code",
+    "Fira Code",
+    "Consolas",
+    "Menlo",
+    monospace;
+  background: color-mix(in srgb, var(--secondary) 12%, transparent);
+  color: var(--secondary);
+  border: 1px solid color-mix(in srgb, var(--secondary) 18%, transparent);
+  white-space: break-spaces;
+}
+
+pre {
+  position: relative !important;
+  margin: 1.35rem 0;
+  padding: 1.15rem 3.4rem 1.15rem 1.15rem !important;
+  min-height: 3.2rem;
+  border-radius: 14px;
+  overflow-x: auto;
+  overflow-y: visible !important;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Code",
+    "Fira Code",
+    "Consolas",
+    "Menlo",
+    monospace;
+  background: #1f2933 !important;
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+pre code {
+  display: block;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  background: transparent !important;
+  color: inherit;
+  border: none !important;
+  white-space: pre;
+  tab-size: 2;
+}
+
+pre span {
+  font-family: inherit;
+}
+
+pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.48);
+  border-radius: 999px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.78);
+}
+
+
+/* ==============================
+   Mooi Blog - Simple Background
+   暗色：科技赛博朋克
+   亮色：明亮暖白
+   ============================== */
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+/* 暗色模式：深蓝黑 + 蓝紫科技光晕 */
+:root[saved-theme="dark"] body {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.18), transparent 28rem),
+    radial-gradient(circle at 85% 12%, rgba(168, 85, 247, 0.2), transparent 30rem),
+    radial-gradient(circle at 50% 105%, rgba(59, 130, 246, 0.12), transparent 32rem),
+    linear-gradient(135deg, #050816 0%, #08111f 45%, #111827 100%);
+}
+
+/* 亮色模式：明亮暖白，不带蓝色光感 */
+:root[saved-theme="light"] body {
+  background:
+    radial-gradient(circle at 16% 10%, rgba(255, 255, 255, 0.95), transparent 28rem),
+    radial-gradient(circle at 86% 12%, rgba(255, 247, 237, 0.55), transparent 30rem),
+    radial-gradient(circle at 50% 105%, rgba(250, 250, 250, 0.92), transparent 32rem),
+    linear-gradient(135deg, #ffffff 0%, #fafafa 50%, #f6f6f4 100%);
+}
+
+/* 暗色模式：正文区域轻微玻璃卡片感 */
+:root[saved-theme="dark"] article {
+  background: rgba(8, 13, 28, 0.56);
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+}
+
+/* 亮色模式：正文区域干净白色卡片感 */
+:root[saved-theme="light"] article {
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+}
+
+/* 暗色模式：标题轻微科技光效 */
+:root[saved-theme="dark"] article h1 {
+  text-shadow: 0 0 22px rgba(34, 211, 238, 0.12);
+}
+
+/* 亮色模式：标题保持清爽 */
+:root[saved-theme="light"] article h1 {
+  text-shadow: none;
+}

@@ -9,8 +9,8 @@ import * as Plugin from "./quartz/plugins"
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "Odyssey Blog",
-    pageTitleSuffix: " | 个人知识库",
-    enableSPA: true,
+    pageTitleSuffix: " | 个人资料库",
+    enableSPA: true,  
     enablePopovers: true,
     analytics: {
       provider: "plausible",
