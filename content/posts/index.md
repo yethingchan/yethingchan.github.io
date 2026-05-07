@@ -1,5 +1,5 @@
 ---
-title: 首页
+title: 博客首页
 share: true
 ---
 尼康正灰级玩家  
