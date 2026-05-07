@@ -128,7 +128,8 @@ body {
   border-radius: 16px;
   border: 1px solid rgba(148, 163, 184, 0.14);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
-  padding: 1.8rem 2.2rem;
+  // padding: 1.8rem 2.2rem;
+  padding: 1rem 2rem;
 }
 
 /* 亮色模式：正文区域干净白色卡片感 */
@@ -137,7 +138,7 @@ body {
   border-radius: 16px;
   border: 1px solid rgba(148, 163, 184, 0.14);
   box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
-  padding: 1.8rem 2.2rem;
+  padding: 1rem 2rem;
 }
 
 /* 暗色模式：标题轻微科技光效 */
@@ -148,4 +149,15 @@ body {
 /* 亮色模式：标题保持清爽 */
 :root[saved-theme="light"] article h1 {
   text-shadow: none;
+}
+
+// 字体配置
+// =====================================
+@font-face {
+  font-family: "LXGWWenKaiScreenR";
+  src: url("/static/fonts/LXGWWenKaiScreen.woff2") format("woff2");
+  font-display: swap;
+}
+body, .quartz-content,h1-h6 {
+  font-family: "LXGWWenKaiScreenR" !important;
 }

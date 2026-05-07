@@ -10,7 +10,7 @@ const config: QuartzConfig = {
   configuration: {
     pageTitle: "Odyssey's Blog",
     pageTitleSuffix: " | 个人知识库",
-    enableSPA: true,  
+    enableSPA: true,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
@@ -20,12 +20,12 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "googleFonts",
-      cdnCaching: true,
+      fontOrigin: "local",
+      cdnCaching: false,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        header: "LXGWWenKaiScreenR",
+        body: "LXGWWenKaiScreenR",
+        code: "monospace",
       },
       colors: {
         lightMode: {
@@ -94,7 +94,7 @@ const config: QuartzConfig = {
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
       // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
+      // Plugin.CustomOgImages(),
     ],
   },
 }
