@@ -179,12 +179,12 @@ h6 {
 }
 
 /* ==============================
-   Arrow Button
+   Arrow Button（弱化黑圈版）
    ============================== */
 #scroll-toggle {
-  position: relative; /* 保证 SVG 可以叠加 */
-  width: 48px;
-  height: 48px;
+  position: relative;
+  width: 64px;
+  height: 64px;
   border-radius: 999px;
   display: flex;
   align-items: center;
@@ -194,34 +194,69 @@ h6 {
   color: #111827;
   box-shadow: 0 12px 32px rgba(15,23,42,0.18);
   transition: transform 0.25s ease;
+  overflow: hidden;
 }
 #scroll-toggle:hover { transform: translateY(-2px) scale(1.04); }
 #scroll-toggle:active { transform: scale(0.96); }
-/* SVG 环 */
+
 #scroll-toggle svg {
   position: absolute;
   top: 0;
   left: 0;
-  transform: rotate(-90deg); /* 让进度从顶部开始 */
-  width: 48px;
-  height: 48px;
+  transform: rotate(-90deg);
+  width: 64px;
+  height: 64px;
 }
+
+/* 关键：把背景描边改成和按钮背景同色，几乎看不见 */
 #scroll-toggle circle.bg {
   fill: none;
-  stroke: rgba(0,0,0,0.1); /* 背景圆 */
+  stroke: rgba(255,255,255,0.9); /* 和白色按钮背景融合 */
   stroke-width: 3;
 }
 
 #scroll-toggle circle.progress {
   fill: none;
-  stroke: #111827; /* 黑色进度 */
+  stroke: #111827;
   stroke-width: 3;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.2s linear;
+  r: 30;
+  cx: 32;
+  cy: 32;
+}
+
+/* 深色模式适配（可选，解决深色模式下的黑圈） */
+:root[saved-theme="dark"] #scroll-toggle circle.bg {
+  stroke: rgba(30, 41, 59, 0.9); /* 和深色按钮背景融合 */
+}
+
+/* 移动端同步修改 */
+@media (max-width: 800px) {
+  #scroll-toggle {
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+  }
+  #scroll-toggle svg {
+    width: 56px;
+    height: 56px;
+  }
+  #scroll-toggle circle.bg {
+    stroke: rgba(255,255,255,0.9);
+  }
+  #scroll-toggle circle.progress {
+    r: 26;
+    cx: 28;
+    cy: 28;
+  }
+  :root[saved-theme="dark"] #scroll-toggle circle.bg {
+    stroke: rgba(30, 41, 59, 0.9);
+  }
 }
 
 /* ==============================
-   Time / TOC Button
+   Time / TOC Button (保持原尺寸不变)
    ============================== */
 #floating-clock {
   width: 64px;       /* 稍宽一点，显示 HH:MM */
@@ -262,7 +297,7 @@ h6 {
 #floating-toc {
   position: fixed;
   right: 1.2rem;
-  bottom: calc(1.6rem + 48px*2 + 12px*2);
+  bottom: calc(1.6rem + 64px + 48px + 12px*2); /* 修改：根据按钮新高度调整位置 */
   width: 280px;
   max-height: 60vh;
   overflow-y: auto;
@@ -306,7 +341,7 @@ h6 {
 }
 
 /* ==============================
-   Mobile Adjustments
+   Mobile Adjustments (同步修改移动端尺寸)
    ============================== */
 @media (max-width: 800px) {
   #floating-stack {
@@ -314,8 +349,12 @@ h6 {
     gap: 8px;
   }
   #scroll-toggle {
-    width: 48px;
-    height: 48px;
+    width: 56px; /* 改为 56px，和移动端时钟按钮同宽 */
+    height: 56px; /* 同步改为 56px，保持正圆 */
+  }
+  #scroll-toggle svg {
+    width: 56px; /* 同步改为 56px */
+    height: 56px; /* 同步改为 56px */
   }
   #floating-clock {
     width: 56px;
@@ -324,7 +363,7 @@ h6 {
   }
   #floating-toc {
     right: 1rem;
-    bottom: calc(1rem + 48px*2 + 8px*2);
+    bottom: calc(1rem + 56px + 44px + 8px*2); /* 修改：适配移动端按钮高度 */
     width: calc(100vw - 2rem);
     max-width: 320px;
   }
