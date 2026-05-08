@@ -4,14 +4,14 @@ const BackToTop: QuartzComponentConstructor = () => {
   return () => (
     <>
       <div id="floating-stack">
-        {/* 浮动时间按钮 - 点击显示 TOC */}
-        <div id="floating-clock">--:--</div>
-
         {/* 上下滚动按钮 */}
         <button id="scroll-toggle" aria-label="Scroll Toggle">
           <div className="progress-ring"></div>
           <span id="scroll-icon">▲</span>
         </button>
+
+        {/* 浮动时间按钮 - 点击显示 TOC */}
+        <div id="floating-clock">--:--</div>
       </div>
 
       {/* TOC 面板 */}
