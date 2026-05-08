@@ -1,4 +1,4 @@
-import { QuartzComponentConstructor } from "./types"
+import { QuartzComponentConstructor } from "./types";
 
 const BackToTop: QuartzComponentConstructor = () => {
   return () => (
@@ -28,14 +28,13 @@ const BackToTop: QuartzComponentConstructor = () => {
                  Scroll Toggle
               ========================= */
 
-              const scrollBtn = document.getElementById("scroll-toggle");
-              const scrollIcon = document.getElementById("scroll-icon");
-
-              if (scrollBtn && scrollIcon) {
+              const initScrollButton = () => {
+                const scrollBtn = document.getElementById("scroll-toggle");
+                const scrollIcon = document.getElementById("scroll-icon");
+                if (!scrollBtn || !scrollIcon) return;
 
                 const updateState = () => {
                   const isNearTop = window.scrollY < 200;
-
                   if (isNearTop) {
                     scrollBtn.classList.add("down");
                     scrollIcon.innerHTML = "▼";
@@ -45,9 +44,8 @@ const BackToTop: QuartzComponentConstructor = () => {
                   }
                 };
 
-                scrollBtn.addEventListener("click", () => {
+                scrollBtn.onclick = () => {
                   const isNearTop = window.scrollY < 200;
-
                   if (isNearTop) {
                     window.scrollTo({
                       top: document.body.scrollHeight,
@@ -59,70 +57,93 @@ const BackToTop: QuartzComponentConstructor = () => {
                       behavior: "smooth",
                     });
                   }
-                });
+                };
 
                 window.addEventListener("scroll", updateState);
-
                 updateState();
-              }
+              };
 
               /* =========================
                  Floating TOC
               ========================= */
 
-              const tocBtn = document.getElementById("toc-toggle");
-              const tocPanel = document.getElementById("floating-toc");
-              const tocContent = document.getElementById("floating-toc-content");
+              const initTOC = () => {
+                const tocBtn = document.getElementById("toc-toggle");
+                const tocPanel = document.getElementById("floating-toc");
+                const tocContent = document.getElementById("floating-toc-content");
+                if (!tocBtn || !tocPanel || !tocContent) return;
 
-              if (tocBtn && tocPanel && tocContent) {
+                /* 清空旧目录 */
+                tocContent.innerHTML = "";
 
-                const headings = document.querySelectorAll(
-                  "article h1, article h2, article h3"
-                );
+                const headings = document.querySelectorAll("article h1, article h2, article h3");
 
+                /* 无目录则隐藏按钮 */
+                if (headings.length === 0) {
+                  tocBtn.style.display = "none";
+                  tocPanel.style.display = "none";
+                  return;
+                } else {
+                  tocBtn.style.display = "flex";
+                  tocPanel.style.display = "block";
+                }
+
+                /* 生成目录 */
                 headings.forEach((heading, index) => {
-
-                  if (!heading.id) {
-                    heading.id = "heading-" + index;
-                  }
+                  if (!heading.id) heading.id = "heading-" + index;
 
                   const item = document.createElement("a");
-
                   item.href = "#" + heading.id;
                   item.innerText = heading.innerText;
+                  item.className = "toc-item toc-" + heading.tagName.toLowerCase();
 
-                  item.className =
-                    "toc-item toc-" + heading.tagName.toLowerCase();
-
-                  item.addEventListener("click", () => {
+                  item.onclick = () => {
                     tocPanel.classList.remove("show");
-                  });
+                  };
 
                   tocContent.appendChild(item);
                 });
 
-                tocBtn.addEventListener("click", () => {
+                /* TOC 按钮显示/隐藏逻辑 */
+                tocBtn.onclick = (e) => {
+                  e.stopPropagation();
                   tocPanel.classList.toggle("show");
-                });
+                };
 
+                /* 点击空白区域关闭 TOC */
                 document.addEventListener("click", (e) => {
                   const target = e.target;
-
-                  if (
-                    !tocPanel.contains(target) &&
-                    !tocBtn.contains(target)
-                  ) {
+                  if (!tocPanel.contains(target) && !tocBtn.contains(target)) {
                     tocPanel.classList.remove("show");
                   }
                 });
-              }
+              };
+
+              /* =========================
+                 Init All
+              ========================= */
+
+              const initAll = () => {
+                initScrollButton();
+                initTOC();
+              };
+
+              /* 首次加载 */
+              initAll();
+
+              /* Quartz SPA 页面切换后重新生成 TOC */
+              document.addEventListener("nav", () => {
+                setTimeout(() => {
+                  initTOC();
+                }, 100);
+              });
 
             })();
           `,
         }}
       />
     </>
-  )
-}
+  );
+};
 
-export default BackToTop
+export default BackToTop;

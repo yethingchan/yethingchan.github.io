@@ -7,7 +7,7 @@
    简洁代码块样式
    ============================== */
 
-:not(pre) > code {
+:not(pre)>code {
   padding: 0.18rem 0.42rem;
   margin: 0 0.08rem;
   border-radius: 6px;
@@ -254,6 +254,10 @@ h6 {
    Apple Liquid Glass Buttons
    ============================== */
 
+/* ==============================
+   Apple Liquid Glass UI
+   ============================== */
+
 #scroll-toggle,
 #toc-toggle {
   position: fixed;
@@ -272,30 +276,29 @@ h6 {
 
   z-index: 999999;
 
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.94);
 
-  /* Liquid Glass */
   background:
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.22),
-      rgba(255, 255, 255, 0.08)
+      rgba(255, 255, 255, 0.34),
+      rgba(255, 255, 255, 0.18)
     );
 
   backdrop-filter:
-    blur(24px)
-    saturate(180%);
+    blur(18px)
+    saturate(150%);
 
   -webkit-backdrop-filter:
-    blur(24px)
-    saturate(180%);
+    blur(18px)
+    saturate(150%);
 
   box-shadow:
     inset 0 1px 1px rgba(255,255,255,0.22),
-    inset 0 -1px 1px rgba(255,255,255,0.05),
-    0 10px 30px rgba(0,0,0,0.18);
+    inset 0 -1px 1px rgba(255,255,255,0.04),
+    0 12px 34px rgba(0,0,0,0.22);
 
   transition:
     transform 0.25s ease,
@@ -312,18 +315,18 @@ h6 {
 
   position: absolute;
 
-  top: 6%;
+  top: 7%;
   left: 10%;
 
   width: 80%;
-  height: 42%;
+  height: 40%;
 
   border-radius: 999px;
 
   background:
     linear-gradient(
       to bottom,
-      rgba(255,255,255,0.32),
+      rgba(255,255,255,0.28),
       rgba(255,255,255,0.02)
     );
 
@@ -341,17 +344,15 @@ h6 {
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,0.28),
-      rgba(255,255,255,0.12)
+      rgba(255,255,255,0.42),
+      rgba(255,255,255,0.24)
     );
 
   box-shadow:
     inset 0 1px 1px rgba(255,255,255,0.24),
     inset 0 -1px 1px rgba(255,255,255,0.06),
-    0 14px 36px rgba(0,0,0,0.22);
+    0 16px 40px rgba(0,0,0,0.24);
 }
-
-/* Active */
 
 #scroll-toggle:active,
 #toc-toggle:active {
@@ -362,7 +363,7 @@ h6 {
 
 #toc-toggle {
   bottom: 5.8rem;
-  font-size: 1.1rem;
+  font-size: 1.08rem;
 }
 
 /* Scroll Button */
@@ -387,7 +388,7 @@ h6 {
   right: 1.2rem;
   bottom: 9.8rem;
 
-  width: 260px;
+  width: 270px;
   max-height: 60vh;
 
   overflow-y: auto;
@@ -410,27 +411,27 @@ h6 {
     transform 0.25s ease,
     visibility 0.25s ease;
 
-  /* Liquid Glass */
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,0.18),
-      rgba(255,255,255,0.08)
+      rgba(255,255,255,0.96),
+      rgba(248,250,252,0.94)
     );
 
+  color: #111827;
+
   backdrop-filter:
-    blur(30px)
-    saturate(180%);
+    blur(16px)
+    saturate(140%);
 
   -webkit-backdrop-filter:
-    blur(30px)
-    saturate(180%);
+    blur(16px)
+    saturate(140%);
 
-  border: 1px solid rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.72);
 
   box-shadow:
-    inset 0 1px 1px rgba(255,255,255,0.18),
-    0 20px 40px rgba(0,0,0,0.22);
+    0 18px 48px rgba(15,23,42,0.18);
 }
 
 #floating-toc.show {
@@ -450,21 +451,23 @@ h6 {
 
   margin-bottom: 0.8rem;
 
-  color: rgba(255,255,255,0.96);
+  color: rgba(15,23,42,0.96);
 }
 
-/* TOC Items */
+/* ==============================
+   TOC Items
+   ============================== */
 
 .toc-item {
   display: block;
 
   text-decoration: none;
 
-  padding: 0.48rem 0.7rem;
+  padding: 0.5rem 0.72rem;
 
   border-radius: 12px;
 
-  color: rgba(255,255,255,0.82);
+  color: rgba(15,23,42,0.88);
 
   transition:
     background 0.2s ease,
@@ -475,9 +478,9 @@ h6 {
 }
 
 .toc-item:hover {
-  background: rgba(255,255,255,0.12);
+  background: rgba(15,23,42,0.06);
 
-  color: rgba(255,255,255,1);
+  color: rgba(15,23,42,1);
 
   transform: translateX(2px);
 }
@@ -505,36 +508,22 @@ h6 {
    ============================== */
 
 :root[saved-theme="light"] #scroll-toggle,
-:root[saved-theme="light"] #toc-toggle,
-:root[saved-theme="light"] #floating-toc {
+:root[saved-theme="light"] #toc-toggle {
 
   color: rgba(15,23,42,0.92);
 
-  border: 1px solid rgba(255,255,255,0.65);
+  border: 1px solid rgba(255,255,255,0.72);
 
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,0.72),
-      rgba(255,255,255,0.42)
+      rgba(255,255,255,0.82),
+      rgba(255,255,255,0.52)
     );
 
   box-shadow:
-    inset 0 1px 1px rgba(255,255,255,0.85),
+    inset 0 1px 1px rgba(255,255,255,0.9),
     0 12px 32px rgba(15,23,42,0.08);
-}
-
-:root[saved-theme="light"] .toc-item {
-  color: rgba(15,23,42,0.82);
-}
-
-:root[saved-theme="light"] .toc-item:hover {
-  background: rgba(255,255,255,0.52);
-  color: rgba(15,23,42,1);
-}
-
-:root[saved-theme="light"] #floating-toc-title {
-  color: rgba(15,23,42,0.95);
 }
 
 /* ==============================

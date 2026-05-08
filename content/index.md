@@ -2,12 +2,37 @@
 title: 首页
 share: true
 ---
-尼康正灰级玩家  
-江淮官话一级甲等  
-热爱熬夜，爱好脱发  
-不谙水性，溺流而上  
-茅盾文学啥都要插嘴奖得主  
-守护最好的坤坤：[@恋爱首选陳路周](https://www.douyin.com/user/MS4wLjABAAAAQhCPjwbx-Bpq7foFLUNlFRTsDPOqK-6_5kY5thVvSFw)
+
+<!-- <div style="padding:1rem;font-family:'Brush Script MT',cursive;">
+    <span style="font-size:2rem;color:#666;"> Not all those who wander are lost. </span>
+    <br>
+    <span style="font-size:1.5rem;"> Welcome! </span>
+</div>
+
+
+<div style="padding:1rem;font-family:'Lucida Calligraphy',cursive;">
+    <span style="font-size:2rem;color:#666;"> Not all those who wander are lost. </span>
+    <br>
+    <span style="font-size:1.5rem;"> Welcome! </span>
+</div> -->
+
+<div style="padding:1rem;font-family:'Segoe Script',cursive;">
+    <span style="font-size:2rem;color:#666;"> Time changes everything. </span>
+    <br>
+    <span style="font-size:1.5rem;"> Welcome! </span>
+</div>
+
+
+> [!NOTE] 写在前面
+> 这个网站从 `Hexo`，`Hugo` 到现在的 `Quartz`，感觉已经迁移了太多次，希望这是最后一次迁移
+> 
+> 选择 `Quartz` 是因为只有它能够和 `Obsidian` 的双链进行联动，让博客更有 `wiki` 的感觉，文章之间的联系更紧密
+
+- 尼康正灰级玩家  
+- 江淮官话一级甲等  
+- 热爱熬夜，爱好脱发  
+- 不谙水性，溺流而上  
+- 守护最好的坤坤：[@恋爱首选陳路周](https://www.douyin.com/user/MS4wLjABAAAAQhCPjwbx-Bpq7foFLUNlFRTsDPOqK-6_5kY5thVvSFw)
 
 
 ![](assets/雨窗.jpg)
