@@ -35,6 +35,6 @@ share: true
 - 守护最好的坤坤：[@恋爱首选陳路周](https://www.douyin.com/user/MS4wLjABAAAAQhCPjwbx-Bpq7foFLUNlFRTsDPOqK-6_5kY5thVvSFw)
 
 
-![](assets/雨窗.jpg)
+![](https://public.ysjf.com/product/preview/GgvVEDstz8.jpg)
  
 
