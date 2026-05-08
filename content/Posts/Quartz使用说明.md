@@ -10,7 +10,7 @@ share: true
 C U 发布
 C M插入模板
 
-### 官方支持的 Callout 类型
+
 
 # Quartz / Obsidian 全量 Callout 类型表格
 | Callout 标识（支持别名） | 中文名称 | 样式&用途 | 直接复制代码 |

@@ -3,15 +3,16 @@ import { QuartzComponentConstructor } from "./types";
 const BackToTop: QuartzComponentConstructor = () => {
   return () => (
     <>
-      {/* 上下滚动按钮 */}
-      <button id="scroll-toggle" aria-label="Scroll Toggle">
-        <span id="scroll-icon">▲</span>
-      </button>
+      <div id="floating-stack">
+        {/* 浮动时间按钮 - 点击显示 TOC */}
+        <div id="floating-clock">--:--</div>
 
-      {/* TOC 按钮 */}
-      <button id="toc-toggle" aria-label="Table of contents">
-        ☰
-      </button>
+        {/* 上下滚动按钮 */}
+        <button id="scroll-toggle" aria-label="Scroll Toggle">
+          <div className="progress-ring"></div>
+          <span id="scroll-icon">▲</span>
+        </button>
+      </div>
 
       {/* TOC 面板 */}
       <div id="floating-toc">
@@ -23,121 +24,85 @@ const BackToTop: QuartzComponentConstructor = () => {
         dangerouslySetInnerHTML={{
           __html: `
             (() => {
-
               /* =========================
-                 Scroll Toggle
+                 Scroll Button + Progress Ring
               ========================= */
+              const scrollBtn = document.getElementById("scroll-toggle");
+              const scrollIcon = document.getElementById("scroll-icon");
+              const progressRing = scrollBtn.querySelector(".progress-ring");
 
-              const initScrollButton = () => {
-                const scrollBtn = document.getElementById("scroll-toggle");
-                const scrollIcon = document.getElementById("scroll-icon");
-                if (!scrollBtn || !scrollIcon) return;
+              const updateScroll = () => {
+                const scrollTop = window.scrollY;
+                const scrollHeight = document.body.scrollHeight - window.innerHeight;
+                const progress = Math.min(scrollTop / scrollHeight, 1);
 
-                const updateState = () => {
-                  const isNearTop = window.scrollY < 200;
-                  if (isNearTop) {
-                    scrollBtn.classList.add("down");
-                    scrollIcon.innerHTML = "▼";
-                  } else {
-                    scrollBtn.classList.remove("down");
-                    scrollIcon.innerHTML = "▲";
-                  }
-                };
-
-                scrollBtn.onclick = () => {
-                  const isNearTop = window.scrollY < 200;
-                  if (isNearTop) {
-                    window.scrollTo({
-                      top: document.body.scrollHeight,
-                      behavior: "smooth",
-                    });
-                  } else {
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth",
-                    });
-                  }
-                };
-
-                window.addEventListener("scroll", updateState);
-                updateState();
-              };
-
-              /* =========================
-                 Floating TOC
-              ========================= */
-
-              const initTOC = () => {
-                const tocBtn = document.getElementById("toc-toggle");
-                const tocPanel = document.getElementById("floating-toc");
-                const tocContent = document.getElementById("floating-toc-content");
-                if (!tocBtn || !tocPanel || !tocContent) return;
-
-                /* 清空旧目录 */
-                tocContent.innerHTML = "";
-
-                const headings = document.querySelectorAll("article h1, article h2, article h3");
-
-                /* 无目录则隐藏按钮 */
-                if (headings.length === 0) {
-                  tocBtn.style.display = "none";
-                  tocPanel.style.display = "none";
-                  return;
-                } else {
-                  tocBtn.style.display = "flex";
-                  tocPanel.style.display = "block";
+                // 更新进度环
+                if(progressRing){
+                  progressRing.style.setProperty('--progress', progress);
                 }
 
-                /* 生成目录 */
-                headings.forEach((heading, index) => {
-                  if (!heading.id) heading.id = "heading-" + index;
+                // 上下箭头切换
+                if(scrollTop < 200){
+                  scrollIcon.innerHTML = "▼";
+                } else {
+                  scrollIcon.innerHTML = "▲";
+                }
+              };
 
-                  const item = document.createElement("a");
-                  item.href = "#" + heading.id;
-                  item.innerText = heading.innerText;
-                  item.className = "toc-item toc-" + heading.tagName.toLowerCase();
-
-                  item.onclick = () => {
-                    tocPanel.classList.remove("show");
-                  };
-
-                  tocContent.appendChild(item);
-                });
-
-                /* TOC 按钮显示/隐藏逻辑 */
-                tocBtn.onclick = (e) => {
-                  e.stopPropagation();
-                  tocPanel.classList.toggle("show");
-                };
-
-                /* 点击空白区域关闭 TOC */
-                document.addEventListener("click", (e) => {
-                  const target = e.target;
-                  if (!tocPanel.contains(target) && !tocBtn.contains(target)) {
-                    tocPanel.classList.remove("show");
-                  }
+              scrollBtn.onclick = () => {
+                const atTop = window.scrollY < 200;
+                window.scrollTo({
+                  top: atTop ? document.body.scrollHeight : 0,
+                  behavior: "smooth",
                 });
               };
+
+              window.addEventListener("scroll", updateScroll);
+              updateScroll();
 
               /* =========================
-                 Init All
+                 Floating Clock + TOC
               ========================= */
+              const clockBtn = document.getElementById("floating-clock");
+              const tocPanel = document.getElementById("floating-toc");
+              const tocContent = document.getElementById("floating-toc-content");
 
-              const initAll = () => {
-                initScrollButton();
-                initTOC();
+              const updateClock = () => {
+                const now = new Date();
+                const hh = String(now.getHours()).padStart(2,'0');
+                const mm = String(now.getMinutes()).padStart(2,'0');
+                clockBtn.innerText = hh + ':' + mm;
+              };
+              updateClock();
+              setInterval(updateClock, 60000);
+
+              clockBtn.onclick = (e) => {
+                e.stopPropagation();
+                tocContent.innerHTML = "";
+                const headings = document.querySelectorAll("article h1, article h2, article h3");
+                headings.forEach((heading,index)=>{
+                  if(!heading.id) heading.id = "heading-"+index;
+                  const a = document.createElement("a");
+                  a.href = "#"+heading.id;
+                  a.textContent = heading.innerText;
+                  a.className = "toc-item toc-"+heading.tagName.toLowerCase();
+                  a.onclick = ()=>tocPanel.classList.remove("show");
+                  tocContent.appendChild(a);
+                });
+                tocPanel.classList.toggle("show");
               };
 
-              /* 首次加载 */
-              initAll();
-
-              /* Quartz SPA 页面切换后重新生成 TOC */
-              document.addEventListener("nav", () => {
-                setTimeout(() => {
-                  initTOC();
-                }, 100);
+              document.addEventListener("click",(e)=>{
+                if(!tocPanel.contains(e.target) && !clockBtn.contains(e.target)){
+                  tocPanel.classList.remove("show");
+                }
               });
 
+              document.addEventListener("nav",()=>{
+                setTimeout(()=>{
+                  if(tocPanel.classList.contains("show")) clockBtn.click();
+                },100);
+              });
             })();
           `,
         }}
