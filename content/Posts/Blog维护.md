@@ -7,7 +7,7 @@ share: true
 ---
 - [x] ```https://blog.csdn.net/2401_89382898/article/details/160636829 csdn维护```
 - [x] 解决目录层级问题
-- [] 解决复制进去的时候图片名称问题，改成纯英文并且没有空格
+- [ ] 解决复制进去的时候图片名称问题，改成纯英文并且没有空格
 - [x] https://zhuanlan.zhihu.com/p/722004011 目录结构问题
 	- [x] obsidian path
 	- [x] fixed folder  `放弃用Obsidian发布，改用命令发布`
@@ -16,4 +16,5 @@ share: true
 - [x] F12抄一下样式![](assets/Pasted%20image%2020260508021102.png)
 - [x] 目录背景颜色加深
 - [x] 撰写自动化发布的脚本
+- [ ] 
 
