@@ -642,3 +642,211 @@ body.page-transition {
   overflow: visible !important;
   height: auto !important;
 }
+
+
+
+/* ==============================
+   Explorer Folder Style
+   ============================== */
+
+/* folder 容器 */
+.explorer .folder-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* 隐藏默认箭头 */
+.explorer .folder-container .folder-icon {
+  display: none !important;
+}
+
+/* 文件夹图标 */
+.explorer .folder-container::before {
+  content: "";
+
+  width: 15px;
+  height: 11px;
+
+  border-radius: 3px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffd76a 0%,
+      #ffbe55 100%
+    );
+
+  display: inline-block;
+
+  position: relative;
+
+  flex-shrink: 0;
+
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.14);
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* 文件夹顶部小盖 */
+.explorer .folder-container::after {
+  content: "";
+
+  position: absolute;
+
+  left: 2px;
+  top: 2px;
+
+  width: 7px;
+  height: 3px;
+
+  border-radius: 2px 2px 0 0;
+
+  background:
+    rgba(255, 227, 138, 1);
+}
+
+/* hover */
+.explorer .folder-container:hover::before {
+  filter:
+    brightness(1.05)
+    saturate(1.06);
+
+  transform: translateY(-1px);
+}
+
+/* 展开状态 */
+.explorer .folder-outer.open
+  + .folder-container::before {
+  filter:
+    brightness(1.06)
+    saturate(1.08);
+}
+
+/* 文件夹标题 */
+.explorer .folder-title {
+  display: inline-flex;
+  align-items: center;
+}
+
+
+/* ==============================
+   Explorer Hierarchy Colors
+   ============================== */
+
+/* 一级 */
+.explorer > .explorer-content > ul > li >
+.folder-container::before {
+  background:
+    linear-gradient(
+      180deg,
+      #ffd76a,
+      #ffbe55
+    );
+}
+
+/* 二级 */
+.explorer .folder-outer > ul > li >
+.folder-container::before {
+  background:
+    linear-gradient(
+      180deg,
+      #7dd3fc,
+      #38bdf8
+    );
+}
+
+/* 三级 */
+.explorer .folder-outer .folder-outer > ul > li >
+.folder-container::before {
+  background:
+    linear-gradient(
+      180deg,
+      #c4b5fd,
+      #8b5cf6
+    );
+}
+
+/* 四级 */
+.explorer .folder-outer
+.folder-outer
+.folder-outer > ul > li >
+.folder-container::before {
+  background:
+    linear-gradient(
+      180deg,
+      #86efac,
+      #22c55e
+    );
+}
+
+/* 五级 */
+.explorer .folder-outer
+.folder-outer
+.folder-outer
+.folder-outer > ul > li >
+.folder-container::before {
+  background:
+    linear-gradient(
+      180deg,
+      #f9a8d4,
+      #ec4899
+    );
+}
+
+/* ==============================
+   Explorer Header
+   ============================== */
+
+.explorer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 一键折叠按钮 */
+#explorer-collapse-all {
+  width: 28px;
+  height: 28px;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(148,163,184,0.08);
+
+  color:
+    rgba(15,23,42,0.78);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+#explorer-collapse-all:hover {
+  background:
+    rgba(148,163,184,0.14);
+
+  transform:
+    scale(1.06);
+}
+
+/* dark */
+:root[saved-theme="dark"]
+#explorer-collapse-all {
+  color:
+    rgba(255,255,255,0.82);
+
+  background:
+    rgba(255,255,255,0.06);
+}

@@ -24,16 +24,20 @@ export interface Options {
 
 const defaultOptions: Options = {
   folderDefaultState: "collapsed",
-  folderClickBehavior: "link",
-  useSavedState: true,
+
+  /* 点击文件夹 = 展开/折叠 */
+  folderClickBehavior: "collapse",
+
+  /* 禁止 Quartz 记忆目录状态 */
+  useSavedState: false,
+
   mapFn: (node) => {
     return node
   },
+
   sortFn: (a, b) => {
-    // Sort order: folders first, then files. Sort folders and files alphabeticall
+    // 文件夹优先，然后按字母排序
     if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
-      // numeric: true: Whether numeric collation should be used, such that "1" < "2" < "10"
-      // sensitivity: "base": Only strings that differ in base letters compare as unequal. Examples: a ≠ b, a = á, a = A
       return a.displayName.localeCompare(b.displayName, undefined, {
         numeric: true,
         sensitivity: "base",
@@ -46,7 +50,9 @@ const defaultOptions: Options = {
       return -1
     }
   },
+
   filterFn: (node) => node.slugSegment !== "tags",
+
   order: ["filter", "map", "sort"],
 }
 
@@ -56,8 +62,10 @@ export type FolderState = {
 }
 
 let numExplorers = 0
+
 export default ((userOpts?: Partial<Options>) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
+
   const { OverflowList, overflowListAfterDOMLoaded } = OverflowListFactory()
 
   const Explorer: QuartzComponent = ({ cfg, displayClass }: QuartzComponentProps) => {
@@ -76,6 +84,7 @@ export default ((userOpts?: Partial<Options>) => {
           mapFn: opts.mapFn.toString(),
         })}
       >
+        {/* Mobile Explorer */}
         <button
           type="button"
           class="explorer-toggle mobile-explorer hide-until-loaded"
@@ -97,36 +106,52 @@ export default ((userOpts?: Partial<Options>) => {
             <line x1="4" x2="20" y1="18" y2="18" />
           </svg>
         </button>
-        <button
-          type="button"
-          class="title-button explorer-toggle desktop-explorer"
-          data-mobile={false}
-          aria-expanded={true}
-        >
-          <h2>{opts.title ?? i18n(cfg.locale).components.explorer.title}</h2>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            viewBox="5 8 14 8"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="fold"
+
+        {/* Explorer Header */}
+        <div class="explorer-header">
+          <button
+            type="button"
+            class="title-button explorer-toggle desktop-explorer"
+            data-mobile={false}
+            aria-expanded={true}
           >
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
+            <h2>{opts.title ?? i18n(cfg.locale).components.explorer.title}</h2>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="5 8 14 8"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="fold"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+
+          {/* 一键折叠 */}
+          <button id="explorer-collapse-all">
+            ⤢
+          </button>
+        </div>
+
+        {/* Explorer Content */}
         <div id={id} class="explorer-content" aria-expanded={false} role="group">
           <OverflowList class="explorer-ul" />
         </div>
+
+        {/* 文件模板 */}
         <template id="template-file">
           <li>
             <a href="#"></a>
           </li>
         </template>
+
+        {/* 文件夹模板 */}
         <template id="template-folder">
           <li>
             <div class="folder-container">
@@ -144,12 +169,14 @@ export default ((userOpts?: Partial<Options>) => {
               >
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
+
               <div>
                 <button class="folder-button">
                   <span class="folder-title"></span>
                 </button>
               </div>
             </div>
+
             <div class="folder-outer">
               <ul class="content"></ul>
             </div>
@@ -160,6 +187,51 @@ export default ((userOpts?: Partial<Options>) => {
   }
 
   Explorer.css = style
-  Explorer.afterDOMLoaded = concatenateResources(script, overflowListAfterDOMLoaded)
+
+  Explorer.afterDOMLoaded = concatenateResources(
+    script,
+    overflowListAfterDOMLoaded,
+
+    `
+(() => {
+
+  function initExplorerCollapse() {
+
+    const btn = document.getElementById("explorer-collapse-all")
+
+    if (!btn) return
+
+    let collapsed = false
+
+    btn.onclick = () => {
+
+      const folders = document.querySelectorAll(".folder-outer")
+
+      folders.forEach((folder) => {
+
+        if (collapsed) {
+          folder.classList.add("open")
+        } else {
+          folder.classList.remove("open")
+        }
+
+      })
+
+      collapsed = !collapsed
+
+      btn.innerText = collapsed ? "⤡" : "⤢"
+    }
+  }
+
+  initExplorerCollapse()
+
+  document.addEventListener("nav", () => {
+    setTimeout(initExplorerCollapse, 100)
+  })
+
+})()
+`,
+  )
+
   return Explorer
 }) satisfies QuartzComponentConstructor
