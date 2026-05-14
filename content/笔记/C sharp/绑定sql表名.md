@@ -125,4 +125,4 @@ namespace HuaTianPcbStock.API.Controllers.aother
 3. **`DbSet<实体>` 让EF Core识别这张表**
 4. **全程自动对应，永不选错表！**
 
-你现在只需要给你的 `WmsOutOrder` 加上 `[Table]` 特性，程序就完美识别你的MySQL表了！
+ 
