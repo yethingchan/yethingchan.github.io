@@ -1,5 +1,4 @@
 import { QuartzComponentConstructor } from "./types";
-
 const BackToTop: QuartzComponentConstructor = () => {
   return () => (
     <>
