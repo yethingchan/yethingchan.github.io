@@ -3,9 +3,8 @@ import { QuartzComponentConstructor } from "./types";
 const BackToTop: QuartzComponentConstructor = () => {
   return () => (
     <>
-    {/* 星空粒子背景 */}
-    <div id="tsparticles"></div>
-
+      {/* 星空粒子背景 */}
+      <div id="tsparticles"></div>
 
       {/* 顶部阅读进度条 */}
       <div id="reading-progress"></div>
@@ -34,79 +33,142 @@ const BackToTop: QuartzComponentConstructor = () => {
 
   let clockTimer = null;
   let tocObserver = null;
+  let scrollHandlerBound = false;
 
   /* =========================
-     Page Transition
+     锁定滚动条宽度
+     防止 SPA 切换抖动
   ========================= */
-  document.body.classList.remove("page-transition");
+  const scrollbarWidth =
+    window.innerWidth -
+    document.documentElement.clientWidth;
 
-  requestAnimationFrame(() => {
-    document.body.classList.add("page-transition");
-  });
+  document.documentElement.style.setProperty(
+    "--scrollbar-width",
+    scrollbarWidth + "px"
+  );
 
+  document.documentElement.style.overflowY = "scroll";
+
+  /* =========================
+     页面切换动画
+  ========================= */
+  function triggerPageTransition() {
+
+    document.body.classList.remove(
+      "page-transition"
+    );
+
+    requestAnimationFrame(() => {
+
+      requestAnimationFrame(() => {
+
+        document.body.classList.add(
+          "page-transition"
+        );
+
+      });
+
+    });
+  }
+
+  /* =========================
+     Scroll Progress
+  ========================= */
+  function updateScroll() {
+
+    const scrollBtn =
+      document.getElementById("scroll-toggle");
+
+    const scrollIcon =
+      document.getElementById("scroll-icon");
+
+    const progressBar =
+      document.getElementById("reading-progress");
+
+    const scrollTop = window.scrollY;
+
+    const scrollHeight =
+      document.body.scrollHeight -
+      window.innerHeight;
+
+    const progress =
+      Math.min(
+        scrollTop / Math.max(scrollHeight, 1),
+        1
+      );
+
+    /* 顶部阅读进度 */
+    if (progressBar) {
+
+      progressBar.style.transform =
+        \`scaleX(\${progress})\`;
+    }
+
+    /* 圆形按钮进度 */
+    if (scrollBtn) {
+
+      scrollBtn.style.setProperty(
+        "--progress",
+        progress.toString()
+      );
+    }
+
+    /* 箭头切换 */
+    if (scrollIcon) {
+
+      scrollIcon.innerHTML =
+        scrollTop < 200 ? "▼" : "▲";
+    }
+
+    /* Banner Parallax */
+    const banner =
+      document.querySelector(".article-cover img");
+
+    if (banner) {
+
+      const offset =
+        window.scrollY * 0.12;
+
+      banner.style.transform =
+        \`scale(1.06) translateY(\${offset}px)\`;
+    }
+  }
+
+  /* =========================
+     初始化
+  ========================= */
   function init() {
 
-    if (clockTimer) clearInterval(clockTimer);
+    if (clockTimer) {
+      clearInterval(clockTimer);
+    }
 
-    const scrollBtn = document.getElementById("scroll-toggle");
-    const scrollIcon = document.getElementById("scroll-icon");
+    const scrollBtn =
+      document.getElementById("scroll-toggle");
 
-    const clockBtn = document.getElementById("floating-clock");
+    const clockBtn =
+      document.getElementById("floating-clock");
 
-    const tocPanel = document.getElementById("floating-toc");
-    const tocContent = document.getElementById("floating-toc-content");
+    const tocPanel =
+      document.getElementById("floating-toc");
 
-    const progressBar = document.getElementById("reading-progress");
+    const tocContent =
+      document.getElementById("floating-toc-content");
 
     /* =========================
-       Scroll Progress
+       绑定 Scroll
     ========================= */
-    const updateScroll = () => {
+    if (!scrollHandlerBound) {
 
-      const scrollTop = window.scrollY;
+      window.addEventListener(
+        "scroll",
+        updateScroll,
+        { passive: true }
+      );
 
-      const scrollHeight =
-        document.body.scrollHeight - window.innerHeight;
-
-      const progress =
-        Math.min(scrollTop / scrollHeight, 1);
-
-      /* 顶部阅读进度 */
-      if (progressBar) {
-        progressBar.style.transform =
-          \`scaleX(\${progress})\`;
-      }
-
-      /* 圆形按钮进度 */
-      if (scrollBtn) {
-        scrollBtn.style.setProperty(
-          "--progress",
-          progress.toString()
-        );
-      }
-
-      /* 箭头切换 */
-      if (scrollIcon) {
-        scrollIcon.innerHTML =
-          scrollTop < 200 ? "▼" : "▲";
-      }
-
-      /* Banner Parallax */
-      const banner =
-        document.querySelector(".article-cover img");
-
-      if (banner) {
-
-        const offset = window.scrollY * 0.12;
-
-        banner.style.setProperty(
-          "--banner-offset",
-          offset + "px"
-        );
-      }
-    };
-
-    window.addEventListener("scroll", updateScroll);
+      scrollHandlerBound = true;
+    }
 
     updateScroll();
 
@@ -118,6 +180,7 @@ const BackToTop: QuartzComponentConstructor = () => {
       scrollBtn.onclick = () => {
 
         window.scrollTo({
+
           top:
             window.scrollY < 200
               ? document.body.scrollHeight
@@ -138,17 +201,21 @@ const BackToTop: QuartzComponentConstructor = () => {
       const now = new Date();
 
       const hh =
-        String(now.getHours()).padStart(2, "0");
+        String(now.getHours())
+          .padStart(2, "0");
 
       const mm =
-        String(now.getMinutes()).padStart(2, "0");
+        String(now.getMinutes())
+          .padStart(2, "0");
 
-      clockBtn.innerText = hh + ":" + mm;
+      clockBtn.innerText =
+        hh + ":" + mm;
     };
 
     updateClock();
 
-    clockTimer = setInterval(updateClock, 60000);
+    clockTimer =
+      setInterval(updateClock, 60000);
 
     /* =========================
        TOC
@@ -170,31 +237,42 @@ const BackToTop: QuartzComponentConstructor = () => {
             "article h1, article h2, article h3"
           );
 
-        headings.forEach((heading, index) => {
+        headings.forEach(
+          (heading, index) => {
 
-          if (!heading.id) {
-            heading.id = "heading-" + index;
+            if (!heading.id) {
+
+              heading.id =
+                "heading-" + index;
+            }
+
+            const a =
+              document.createElement("a");
+
+            a.href =
+              "#" + heading.id;
+
+            a.textContent =
+              heading.innerText;
+
+            a.className =
+              "toc-item toc-" +
+              heading.tagName.toLowerCase();
+
+            a.onclick = () => {
+
+              tocPanel.classList.remove(
+                "show"
+              );
+            };
+
+            tocContent.appendChild(a);
           }
+        );
 
-          const a = document.createElement("a");
-
-          a.href = "#" + heading.id;
-
-          a.textContent = heading.innerText;
-
-          a.className =
-            "toc-item toc-" +
-            heading.tagName.toLowerCase();
-
-          a.onclick = () => {
-            tocPanel.classList.remove("show");
-          };
-
-          tocContent.appendChild(a);
-        });
-
-        /* TOC Active Highlight */
+        /* TOC 当前标题高亮 */
         if (tocObserver) {
+
           tocObserver.disconnect();
         }
 
@@ -204,36 +282,38 @@ const BackToTop: QuartzComponentConstructor = () => {
 
               entries.forEach((entry) => {
 
-                const id = entry.target.id;
+                if (!entry.isIntersecting)
+                  return;
+
+                const id =
+                  entry.target.id;
 
                 const tocLinks =
                   document.querySelectorAll(
                     ".toc-item"
                   );
 
-                if (entry.isIntersecting) {
+                tocLinks.forEach((link) => {
 
-                  tocLinks.forEach((link) => {
+                  link.classList.remove(
+                    "active"
+                  );
 
-                    link.classList.remove(
+                  if (
+                    link.getAttribute("href") ===
+                    "#" + id
+                  ) {
+
+                    link.classList.add(
                       "active"
                     );
-
-                    if (
-                      link.getAttribute("href") ===
-                      "#" + id
-                    ) {
-                      link.classList.add(
-                        "active"
-                      );
-                    }
-                  });
-                }
+                  }
+                });
               });
             },
             {
               rootMargin:
-                "-30% 0px -60% 0px",
+                "-25% 0px -60% 0px",
 
               threshold: 0,
             }
@@ -255,7 +335,10 @@ const BackToTop: QuartzComponentConstructor = () => {
             !tocPanel.contains(e.target) &&
             !clockBtn.contains(e.target)
           ) {
-            tocPanel.classList.remove("show");
+
+            tocPanel.classList.remove(
+              "show"
+            );
           }
         }
       );
@@ -263,31 +346,26 @@ const BackToTop: QuartzComponentConstructor = () => {
   }
 
   /* =========================
-     Init
+     首次加载
   ========================= */
+  triggerPageTransition();
+
   init();
 
   /* =========================
-     Quartz SPA Nav
+     Quartz SPA Navigation
   ========================= */
   document.addEventListener(
     "nav",
     () => {
 
-      document.body.classList.remove(
-        "page-transition"
-      );
-
-      requestAnimationFrame(() => {
-
-        document.body.classList.add(
-          "page-transition"
-        );
-      });
+      triggerPageTransition();
 
       setTimeout(() => {
 
         init();
+
+        updateScroll();
 
         const tocPanel =
           document.getElementById(
@@ -295,10 +373,13 @@ const BackToTop: QuartzComponentConstructor = () => {
           );
 
         if (tocPanel) {
-          tocPanel.classList.remove("show");
+
+          tocPanel.classList.remove(
+            "show"
+          );
         }
 
-      }, 100);
+      }, 80);
     }
   );
 

@@ -1001,29 +1001,31 @@ body::after {
     top 0.08s linear;
 }
 
-/* ==============================
+/* =========================================
    Shooting Stars
-   ============================== */
+========================================= */
 
 .shooting-star {
   position: fixed;
 
   top: -10%;
-  left: -10%;
+  left: 110%;
 
   width: 160px;
   height: 2px;
 
-  z-index: -2;
+  z-index: -6;
 
   opacity: 0;
 
   pointer-events: none;
 
   background:
-    linear-gradient(90deg,
+    linear-gradient(
+      90deg,
       rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0));
+      rgba(255, 255, 255, 0)
+    );
 
   transform:
     rotate(-25deg);
@@ -1041,9 +1043,11 @@ body::after {
 }
 
 @keyframes shootingStar {
+
   0% {
     transform:
-      translate3d(0, 0, 0) rotate(-25deg);
+      translate3d(0, 0, 0)
+      rotate(-25deg);
 
     opacity: 0;
   }
@@ -1054,7 +1058,8 @@ body::after {
 
   100% {
     transform:
-      translate3d(140vw, 70vh, 0) rotate(-25deg);
+      translate3d(-140vw, 70vh, 0)
+      rotate(-25deg);
 
     opacity: 0;
   }
