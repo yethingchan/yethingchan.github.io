@@ -6,7 +6,7 @@ const CursorGlow: QuartzComponentConstructor = () => {
       <div className="shooting-star"></div>
       <div className="shooting-star"></div>
       <div className="shooting-star"></div>
-      <div id="cursor-glow"></div>
+      {/* <div id="cursor-glow"></div> */}
 
       <script
         dangerouslySetInnerHTML={{

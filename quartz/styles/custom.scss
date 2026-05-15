@@ -905,45 +905,45 @@ html {
    Aurora 极光背景
    ============================== */
 
-body::before {
-  content: "";
+// body::before {
+//   content: "";
 
-  position: fixed;
-  inset: -20%;
+//   position: fixed;
+//   inset: -20%;
 
-  z-index: -20;
+//   z-index: -20;
 
-  pointer-events: none;
+//   pointer-events: none;
 
-  background:
-    radial-gradient(circle at 20% 30%,
-      rgba(56, 189, 248, 0.16),
-      transparent 32%),
+//   background:
+//     radial-gradient(circle at 20% 30%,
+//       rgba(56, 189, 248, 0.16),
+//       transparent 32%),
 
-    radial-gradient(circle at 80% 20%,
-      rgba(168, 85, 247, 0.18),
-      transparent 34%),
+//     radial-gradient(circle at 80% 20%,
+//       rgba(168, 85, 247, 0.18),
+//       transparent 34%),
 
-    radial-gradient(circle at 50% 80%,
-      rgba(99, 102, 241, 0.14),
-      transparent 38%);
+//     radial-gradient(circle at 50% 80%,
+//       rgba(99, 102, 241, 0.14),
+//       transparent 38%);
 
-  filter: blur(80px);
+//   filter: blur(80px);
 
-  animation: auroraMove 18s ease-in-out infinite alternate;
-}
+//   animation: auroraMove 18s ease-in-out infinite alternate;
+// }
 
-@keyframes auroraMove {
-  from {
-    transform:
-      translate3d(-2%, -1%, 0) scale(1);
-  }
+// @keyframes auroraMove {
+//   from {
+//     transform:
+//       translate3d(-2%, -1%, 0) scale(1);
+//   }
 
-  to {
-    transform:
-      translate3d(2%, 2%, 0) scale(1.08);
-  }
-}
+//   to {
+//     transform:
+//       translate3d(2%, 2%, 0) scale(1.08);
+//   }
+// }
 
 /* ==============================
    Noise Grain 噪点 
