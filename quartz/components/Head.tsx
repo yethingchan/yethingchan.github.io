@@ -97,6 +97,11 @@ export default (() => {
             return resource
           }
         })}
+
+        {/* // 星空粒子背景 */}
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+        <script src="/static/particles.js"></script>
       </head>
     )
   }

@@ -3,7 +3,7 @@ title: 🎵Music
 ---
 
 
-# Music
+# 🎵Spotify
 
 
 <div class="music-page">

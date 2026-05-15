@@ -3,6 +3,10 @@ import { QuartzComponentConstructor } from "./types";
 const BackToTop: QuartzComponentConstructor = () => {
   return () => (
     <>
+    {/* 星空粒子背景 */}
+    <div id="tsparticles"></div>
+
+
       {/* 顶部阅读进度条 */}
       <div id="reading-progress"></div>
 

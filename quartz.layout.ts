@@ -1,11 +1,13 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import BackToTop from "./quartz/components/BackToTop"
+import StarryBackground from "./quartz/components/StarryBackground"
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
   afterBody: [
+    StarryBackground(undefined),
     BackToTop(undefined),
   ],
   footer: Component.Footer({

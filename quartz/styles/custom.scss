@@ -128,7 +128,8 @@ body {
    ============================== */
 
 :root[saved-theme="dark"] article {
-  background: rgba(8, 13, 28, 0.56);
+  // background: rgba(8, 13, 28, 0.56);
+  background: rgba(8, 13, 28, 0.42);
   border-radius: 16px;
   border: 1px solid rgba(148, 163, 184, 0.14);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
@@ -913,4 +914,35 @@ body.page-transition {
   .music-page iframe {
     height: 620px;
   }
+}
+
+
+
+/* ==============================
+   Starry Background
+   ============================== */
+
+#starry-background {
+  position: fixed;
+
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  z-index: -10;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+/* 暗色模式更明显 */
+:root[saved-theme="dark"] #starry-background {
+  opacity: 1;
+}
+
+/* 亮色模式淡一些 */
+:root[saved-theme="light"] #starry-background {
+  opacity: 0.35;
 }
