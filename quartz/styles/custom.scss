@@ -90,7 +90,11 @@ pre::-webkit-scrollbar-thumb:hover {
    Mooi Blog - Background
    ============================== */
 
-html,
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 body {
   min-height: 100%;
   width: 100%;
@@ -533,9 +537,8 @@ h6 {
     linear-gradient(90deg,
       // #22d3ee, #60a5fa, #a78bfa
       // #64748b , #475569, #78716c
-      #f472b6, #fb923c, #facc15
-      // #06b6d4, #3b82f6, #8b5cf6
-      );
+      #f472b6, #fb923c, #facc15 // #06b6d4, #3b82f6, #8b5cf6
+    );
 
   box-shadow:
     0 0 12px rgba(129, 140, 248, 0.6);
@@ -559,47 +562,25 @@ h6 {
 
 
 /* ==============================
-   Page Transition
+   Quartz Page Transition
    ============================== */
 
-// .page-transition {
-//   animation: pageFade 0.45s ease;
-// }
-
-// @keyframes pageFade {
-//   from {
-//     opacity: 0;
-//     transform: translateY(8px);
-//     filter: blur(4px);
-//   }
-
-//   to {
-//     opacity: 1;
-//     transform: translateY(0);
-//     filter: blur(0);
-//   }
-// }
-
-/* ==============================
-   Page Transition
-   ============================== */
-
-body {
-  opacity: 1;
-  transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
+/* 防止页面宽度抖动 */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
 }
 
-body.page-transition {
-  animation: quartzFadeIn 0.45s ease;
+/* 只动画文章内容 */
+.page-transition article {
+  animation: quartzArticleFade 0.42s ease;
 }
 
-@keyframes quartzFadeIn {
+@keyframes quartzArticleFade {
   from {
     opacity: 0;
-    transform: translateY(8px);
-    filter: blur(6px);
+    transform: translateY(10px);
+    filter: blur(4px);
   }
 
   to {
@@ -673,11 +654,9 @@ body.page-transition {
   border-radius: 3px;
 
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       #ffd76a 0%,
-      #ffbe55 100%
-    );
+      #ffbe55 100%);
 
   display: inline-block;
 
@@ -686,7 +665,7 @@ body.page-transition {
   flex-shrink: 0;
 
   box-shadow:
-    0 1px 2px rgba(0,0,0,0.14);
+    0 1px 2px rgba(0, 0, 0, 0.14);
 
   transition:
     transform 0.2s ease,
@@ -714,18 +693,15 @@ body.page-transition {
 /* hover */
 .explorer .folder-container:hover::before {
   filter:
-    brightness(1.05)
-    saturate(1.06);
+    brightness(1.05) saturate(1.06);
 
   transform: translateY(-1px);
 }
 
 /* 展开状态 */
-.explorer .folder-outer.open
-  + .folder-container::before {
+.explorer .folder-outer.open+.folder-container::before {
   filter:
-    brightness(1.06)
-    saturate(1.08);
+    brightness(1.06) saturate(1.08);
 }
 
 /* 文件夹标题 */
@@ -740,63 +716,43 @@ body.page-transition {
    ============================== */
 
 /* 一级 */
-.explorer > .explorer-content > ul > li >
-.folder-container::before {
+.explorer>.explorer-content>ul>li>.folder-container::before {
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       #ffd76a,
-      #ffbe55
-    );
+      #ffbe55);
 }
 
 /* 二级 */
-.explorer .folder-outer > ul > li >
-.folder-container::before {
+.explorer .folder-outer>ul>li>.folder-container::before {
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       #7dd3fc,
-      #38bdf8
-    );
+      #38bdf8);
 }
 
 /* 三级 */
-.explorer .folder-outer .folder-outer > ul > li >
-.folder-container::before {
+.explorer .folder-outer .folder-outer>ul>li>.folder-container::before {
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       #c4b5fd,
-      #8b5cf6
-    );
+      #8b5cf6);
 }
 
 /* 四级 */
-.explorer .folder-outer
-.folder-outer
-.folder-outer > ul > li >
-.folder-container::before {
+.explorer .folder-outer .folder-outer .folder-outer>ul>li>.folder-container::before {
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       #86efac,
-      #22c55e
-    );
+      #22c55e);
 }
 
 /* 五级 */
-.explorer .folder-outer
-.folder-outer
-.folder-outer
-.folder-outer > ul > li >
-.folder-container::before {
+.explorer .folder-outer .folder-outer .folder-outer .folder-outer>ul>li>.folder-container::before {
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       #f9a8d4,
-      #ec4899
-    );
+      #ec4899);
 }
 
 /* ==============================
@@ -824,10 +780,10 @@ body.page-transition {
   justify-content: center;
 
   background:
-    rgba(148,163,184,0.08);
+    rgba(148, 163, 184, 0.08);
 
   color:
-    rgba(15,23,42,0.78);
+    rgba(15, 23, 42, 0.78);
 
   transition:
     background 0.2s ease,
@@ -836,20 +792,19 @@ body.page-transition {
 
 #explorer-collapse-all:hover {
   background:
-    rgba(148,163,184,0.14);
+    rgba(148, 163, 184, 0.14);
 
   transform:
     scale(1.06);
 }
 
 /* dark */
-:root[saved-theme="dark"]
-#explorer-collapse-all {
+:root[saved-theme="dark"] #explorer-collapse-all {
   color:
-    rgba(255,255,255,0.82);
+    rgba(255, 255, 255, 0.82);
 
   background:
-    rgba(255,255,255,0.06);
+    rgba(255, 255, 255, 0.06);
 }
 
 /* ==============================
@@ -897,11 +852,9 @@ body.page-transition {
 /* 暗色模式 */
 :root[saved-theme="dark"] .music-page {
   background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,0.24),
-      rgba(8,13,28,0.42)
-    );
+    linear-gradient(180deg,
+      rgba(0, 0, 0, 0.24),
+      rgba(8, 13, 28, 0.42));
 }
 
 /* 移动端 */
@@ -945,4 +898,164 @@ body.page-transition {
 /* 亮色模式淡一些 */
 :root[saved-theme="light"] #starry-background {
   opacity: 0.35;
+}
+
+/* ==============================
+   Aurora Background
+   Aurora 极光背景
+   ============================== */
+
+body::before {
+  content: "";
+
+  position: fixed;
+  inset: -20%;
+
+  z-index: -20;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 20% 30%,
+      rgba(56, 189, 248, 0.16),
+      transparent 32%),
+
+    radial-gradient(circle at 80% 20%,
+      rgba(168, 85, 247, 0.18),
+      transparent 34%),
+
+    radial-gradient(circle at 50% 80%,
+      rgba(99, 102, 241, 0.14),
+      transparent 38%);
+
+  filter: blur(80px);
+
+  animation: auroraMove 18s ease-in-out infinite alternate;
+}
+
+@keyframes auroraMove {
+  from {
+    transform:
+      translate3d(-2%, -1%, 0) scale(1);
+  }
+
+  to {
+    transform:
+      translate3d(2%, 2%, 0) scale(1.08);
+  }
+}
+
+/* ==============================
+   Noise Grain 噪点 
+   ============================== */
+
+body::after {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  z-index: -5;
+
+  pointer-events: none;
+
+  opacity: 0.05;
+
+  background-image:
+    url("https://grainy-gradients.vercel.app/noise.svg");
+
+  mix-blend-mode: soft-light;
+}
+
+/* ==============================
+   Cursor Glow
+   ============================== */
+
+#cursor-glow {
+  position: fixed;
+
+  width: 320px;
+  height: 320px;
+
+  left: 0;
+  top: 0;
+
+  border-radius: 999px;
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  transform: translate(-50%, -50%);
+
+  background:
+    radial-gradient(circle,
+      rgba(95, 97, 243, 0.16),
+      rgba(56, 189, 248, 0.08),
+      transparent 72%);
+
+  filter: blur(36px);
+
+  transition:
+    left 0.08s linear,
+    top 0.08s linear;
+}
+
+/* ==============================
+   Shooting Stars
+   ============================== */
+
+.shooting-star {
+  position: fixed;
+
+  top: -10%;
+  left: -10%;
+
+  width: 160px;
+  height: 2px;
+
+  z-index: -2;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(90deg,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0));
+
+  transform:
+    rotate(-25deg);
+
+  animation:
+    shootingStar 8s linear infinite;
+}
+
+.shooting-star:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.shooting-star:nth-child(3) {
+  animation-delay: 5s;
+}
+
+@keyframes shootingStar {
+  0% {
+    transform:
+      translate3d(0, 0, 0) rotate(-25deg);
+
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translate3d(140vw, 70vh, 0) rotate(-25deg);
+
+    opacity: 0;
+  }
 }

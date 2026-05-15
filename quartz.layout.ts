@@ -2,11 +2,13 @@ import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import BackToTop from "./quartz/components/BackToTop"
 import StarryBackground from "./quartz/components/StarryBackground"
+import CursorGlow from "./quartz/components/CursorGlow"
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
   afterBody: [
+    CursorGlow(undefined),//鼠标光晕
     StarryBackground(undefined),
     BackToTop(undefined),
   ],
