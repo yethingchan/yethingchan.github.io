@@ -342,6 +342,52 @@ const BackToTop: QuartzComponentConstructor = () => {
           }
         }
       );
+      /* PC端浮动目录触发快捷键*/
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey && e.key.toLowerCase() === "m") {
+    const tocPanel = document.getElementById("floating-toc");
+    const tocContent = document.getElementById("floating-toc-content");
+    const clockBtn = document.getElementById("floating-clock");
+    if (!tocPanel || !tocContent || !clockBtn) return;
+
+    tocContent.innerHTML = "";
+
+    const headings = document.querySelectorAll(
+      "article h1, article h2, article h3"
+    );
+
+    headings.forEach((heading, index) => {
+      if (!heading.id) heading.id = "heading-" + index;
+      const a = document.createElement("a");
+      a.href = "#" + heading.id;
+      a.textContent = heading.innerText;
+      a.className = "toc-item toc-" + heading.tagName.toLowerCase();
+      a.onclick = () => tocPanel.classList.remove("show");
+      tocContent.appendChild(a);
+    });
+
+    if (tocObserver) tocObserver.disconnect();
+    tocObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id;
+          const tocLinks = document.querySelectorAll(".toc-item");
+          tocLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#" + id) {
+              link.classList.add("active");
+            }
+          });
+        });
+      },
+      { rootMargin: "-25% 0px -60% 0px", threshold: 0 }
+    );
+
+    headings.forEach((h) => tocObserver.observe(h));
+    tocPanel.classList.toggle("show");
+  }
+});
     }
   }
 
