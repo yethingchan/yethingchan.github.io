@@ -1,4 +1,6 @@
 @use "./base.scss";
+@use "sass:math";
+
 
 // put your custom CSS here!
 
@@ -1070,48 +1072,59 @@ body::after {
 .music-page-wrapper {
   position: relative;
   width: 100%;
-  min-height: 100vh; // 全屏沉浸感
+  min-height: 100vh;
   overflow: hidden;
   border-radius: 24px;
+  background: #0b111a;
 }
 
 /* 背景层 */
 .music-background {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 30%, #0f2027, #203a43, #2c5364);
-  animation: backgroundShift 20s linear infinite alternate;
-  filter: blur(100px);
+  background: radial-gradient(circle at 50% 30%, #0b111a, #1c1f2a, #283047);
+  animation: backgroundShift 30s linear infinite alternate;
+  filter: blur(120px);
   z-index: 0;
 }
 
-/* 动态频谱层 */
+/* 频谱裁剪容器 */
+.music-visualizer-wrapper {
+  height: 200px;          // 裁剪高度
+  overflow: hidden;        // 裁剪柱子
+  margin-bottom: 20px;     // iframe 上方间距
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* 频谱动画层 */
 .music-visualizer {
-  position: absolute;
-  inset: 0;
   display: flex;
   align-items: flex-end;
-  justify-content: center;
-  gap: 4px;
-  padding: 20px;
-  pointer-events: none;
-  z-index: 1;
+  gap: 2px;
 
   span {
-    width: 25px;
-    gap:2px;
-    height: 80px;
+    width: 10px;
+    height: 140px; 
     border-radius: 6px;
     background: linear-gradient(to top, #00ffe7, #00b3ff, #7a5cff, #ff4ecd);
-    opacity: 0.8;
-    animation: musicWave 1s ease-in-out infinite;
-    filter: blur(0.3px);
+    opacity: 0.9;
+    animation-name: musicWave;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    transform-origin: bottom;
+    box-shadow: 0 0 15px rgba(0,179,255,0.6), 0 0 25px rgba(122,92,255,0.4);
+  }
 
-    // 每根柱子延迟不同
-    @for $i from 1 through 32 {
-      &:nth-child(#{$i}) {
-        animation-delay: #{($i * 0.07)}s;
-      }
+  // 桌面端 40 根柱子随机动画
+  @for $i from 1 through 40 {
+    span:nth-child(#{$i}) {
+      $delay: math.div(math.random(100),100);
+      $duration: 1 + math.div(math.random(20),20);
+
+      animation-delay: #{$delay}s;
+      animation-duration: #{$duration}s;
     }
   }
 }
@@ -1120,35 +1133,51 @@ body::after {
 .music-page-wrapper iframe {
   position: relative;
   z-index: 2;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px) saturate(1.2);
   border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
 }
 
 /* 动画 */
 @keyframes musicWave {
-  0% {
-    height: 30px;
-  }
-
-  50% {
-    height: 180px;
-  }
-
-  100% {
-    height: 50px;
-  }
+  0% { transform: scaleY(0.3); opacity: 0.6; }
+  25% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.6); opacity: 0.8; }
+  75% { transform: scaleY(0.9); opacity: 0.9; }
+  100% { transform: scaleY(0.4); opacity: 0.7; }
 }
 
 @keyframes backgroundShift {
-  0% {
-    transform: scale(1) translate(0, 0);
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.05) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .music-visualizer-wrapper {
+    height: 150px;
   }
 
-  50% {
-    transform: scale(1.05) translate(10px, -10px);
+  .music-visualizer span {
+    width: 6px;
+    height: 120px;
   }
+  .music-visualizer {
+    gap: 1px;
 
-  100% {
-    transform: scale(1) translate(0, 0);
+    // 移动端 24 根柱子随机动画
+    @for $i from 1 through 24 {
+      span:nth-child(#{$i}) {
+        $delay: math.div(math.random(100),100);
+        $duration: 1 + math.div(math.random(20),20);
+
+        animation-delay: #{$delay}s;
+        animation-duration: #{$duration}s;
+      }
+    }
+  }
+  .music-page-wrapper iframe {
+    height: 400px;
   }
 }

@@ -5,26 +5,40 @@ title: 🎵Music
 
 # 🎵Spotify
 
-
 <div class="music-page-wrapper">
 
-  <!-- 1. 背景层 -->
+  <!-- 背景层 -->
   <div class="music-background"></div>
 
-  <!-- 2. 频谱动画层 -->
-  <div class="music-visualizer">
-    <!-- 可以放 32 根柱子 -->
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
+  <!-- 频谱区域 -->
+  <div class="music-visualizer-wrapper">
+    <div class="music-visualizer">
+      <!-- 40 根柱子 -->
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+    </div>
   </div>
 
-  <!-- 3. Spotify iframe -->
+  <!-- Spotify iframe -->
   <iframe
     style="border-radius:20px"
     src="https://open.spotify.com/embed/playlist/1YcKJucOoHb44rrYmkZiaZ?utm_source=generator&theme=0"
