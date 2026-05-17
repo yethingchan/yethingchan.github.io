@@ -5,26 +5,48 @@ title: 🎵Music
 
 # 🎵Spotify
 
+<div class="music-page-wrapper">
 
-<div class="music-page">
+  <!-- 背景层 -->
+  <div class="music-background"></div>
 
-<iframe
-  style="border-radius:20px"
-  src="https://open.spotify.com/embed/playlist/1YcKJucOoHb44rrYmkZiaZ?utm_source=generator&theme=0"
-  width="100%"
-  height="760"
-  frameBorder="0"
-  allowfullscreen=""
-  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-  loading="lazy">
-</iframe>
+  <!-- 频谱区域 -->
+  <div class="music-visualizer-wrapper">
+    <div class="music-visualizer">
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+      <span></span>...<span></span>
+    </div>
+  </div>
+
+  <!-- Spotify iframe -->
+  <iframe
+    style="border-radius:20px"
+    src="https://open.spotify.com/embed/playlist/1YcKJucOoHb44rrYmkZiaZ?utm_source=generator&theme=0"
+    width="100%"
+    height="760"
+    frameBorder="0"
+    allowfullscreen
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+  </iframe>
 
 </div>
-
-
-
-
-
-
-
-

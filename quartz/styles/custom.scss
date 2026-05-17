@@ -1,4 +1,6 @@
 @use "./base.scss";
+@use "sass:math";
+
 
 // put your custom CSS here!
 
@@ -42,8 +44,12 @@ pre {
     "Consolas",
     "Menlo",
     monospace;
-  background: #1f2933 !important;
-  color: #e5e7eb;
+  // background: #1f2933 !important;
+  // color: #e5e7eb;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
   border: 1px solid rgba(148, 163, 184, 0.22);
   box-shadow:
     0 10px 24px rgba(0, 0, 0, 0.14),
@@ -1021,11 +1027,9 @@ body::after {
   pointer-events: none;
 
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0)
-    );
+      rgba(255, 255, 255, 0));
 
   transform:
     rotate(-25deg);
@@ -1046,8 +1050,7 @@ body::after {
 
   0% {
     transform:
-      translate3d(0, 0, 0)
-      rotate(-25deg);
+      translate3d(0, 0, 0) rotate(-25deg);
 
     opacity: 0;
   }
@@ -1058,9 +1061,123 @@ body::after {
 
   100% {
     transform:
-      translate3d(-140vw, 70vh, 0)
-      rotate(-25deg);
+      translate3d(-140vw, 70vh, 0) rotate(-25deg);
 
     opacity: 0;
+  }
+}
+
+
+// ====== 音乐频谱 =========
+.music-page-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #0b111a;
+}
+
+/* 背景层 */
+.music-background {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, #0b111a, #1c1f2a, #283047);
+  animation: backgroundShift 30s linear infinite alternate;
+  filter: blur(120px);
+  z-index: 0;
+}
+
+/* 频谱裁剪容器 */
+.music-visualizer-wrapper {
+  height: 200px;          // 裁剪高度
+  overflow: hidden;        // 裁剪柱子
+  margin-bottom: 20px;     // iframe 上方间距
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* 频谱动画层 */
+.music-visualizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+
+  span {
+    width: 10px;
+    height: 140px; 
+    border-radius: 6px;
+    background: linear-gradient(to top, #00ffe7, #00b3ff, #7a5cff, #ff4ecd);
+    opacity: 0.9;
+    animation-name: musicWave;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    transform-origin: bottom;
+    box-shadow: 0 0 15px rgba(0,179,255,0.6), 0 0 25px rgba(122,92,255,0.4);
+  }
+
+  // 桌面端 40 根柱子随机动画
+  @for $i from 1 through 40 {
+    span:nth-child(#{$i}) {
+      $delay: math.div(math.random(100),100);
+      $duration: 1 + math.div(math.random(20),20);
+
+      animation-delay: #{$delay}s;
+      animation-duration: #{$duration}s;
+    }
+  }
+}
+
+/* Spotify iframe */
+.music-page-wrapper iframe {
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(30px) saturate(1.2);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+/* 动画 */
+@keyframes musicWave {
+  0% { transform: scaleY(0.3); opacity: 0.6; }
+  25% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.6); opacity: 0.8; }
+  75% { transform: scaleY(0.9); opacity: 0.9; }
+  100% { transform: scaleY(0.4); opacity: 0.7; }
+}
+
+@keyframes backgroundShift {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.05) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .music-visualizer-wrapper {
+    height: 150px;
+  }
+
+  .music-visualizer span {
+    width: 6px;
+    height: 120px;
+  }
+  .music-visualizer {
+    gap: 1px;
+
+    // 移动端 24 根柱子随机动画
+    @for $i from 1 through 24 {
+      span:nth-child(#{$i}) {
+        $delay: math.div(math.random(100),100);
+        $duration: 1 + math.div(math.random(20),20);
+
+        animation-delay: #{$delay}s;
+        animation-duration: #{$duration}s;
+      }
+    }
+  }
+  .music-page-wrapper iframe {
+    height: 400px;
   }
 }

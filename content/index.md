@@ -22,7 +22,7 @@ share: true
     <span style="font-size:1.5rem;"> Welcome! </span>
 </div> -->
 
-<div style="padding:1rem;font-family:'Apple Chancery','Segoe Script',cursive;">
+<div style="padding:1rem;font-family: 'Apple Chancery', 'Segoe Script', 'Dancing Script', cursive;">
     <span style="font-size:2rem;color:#666;"> Time changes everything. </span>
     <br>
     <span style="font-size:1.5rem;"> Welcome! </span>
