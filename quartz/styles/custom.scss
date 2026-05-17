@@ -1064,3 +1064,91 @@ body::after {
     opacity: 0;
   }
 }
+
+
+// ====== 音乐频谱 =========
+.music-page-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; // 全屏沉浸感
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+/* 背景层 */
+.music-background {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, #0f2027, #203a43, #2c5364);
+  animation: backgroundShift 20s linear infinite alternate;
+  filter: blur(100px);
+  z-index: 0;
+}
+
+/* 动态频谱层 */
+.music-visualizer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  padding: 20px;
+  pointer-events: none;
+  z-index: 1;
+
+  span {
+    width: 25px;
+    gap:2px;
+    height: 80px;
+    border-radius: 6px;
+    background: linear-gradient(to top, #00ffe7, #00b3ff, #7a5cff, #ff4ecd);
+    opacity: 0.8;
+    animation: musicWave 1s ease-in-out infinite;
+    filter: blur(0.3px);
+
+    // 每根柱子延迟不同
+    @for $i from 1 through 32 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i * 0.07)}s;
+      }
+    }
+  }
+}
+
+/* Spotify iframe */
+.music-page-wrapper iframe {
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+}
+
+/* 动画 */
+@keyframes musicWave {
+  0% {
+    height: 30px;
+  }
+
+  50% {
+    height: 180px;
+  }
+
+  100% {
+    height: 50px;
+  }
+}
+
+@keyframes backgroundShift {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+
+  50% {
+    transform: scale(1.05) translate(10px, -10px);
+  }
+
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
