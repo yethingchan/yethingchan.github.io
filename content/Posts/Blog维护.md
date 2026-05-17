@@ -123,9 +123,4 @@ share: true
 
 ### 7. Framer Motion 页面转场
 
-### 8. WebGL 背景
-
-### 9. 动态 Aurora 背景
-
-### 10. 类似 Linear 的 Noise Texture
  
