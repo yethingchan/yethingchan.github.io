@@ -42,8 +42,12 @@ pre {
     "Consolas",
     "Menlo",
     monospace;
-  background: #1f2933 !important;
-  color: #e5e7eb;
+  // background: #1f2933 !important;
+  // color: #e5e7eb;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
   border: 1px solid rgba(148, 163, 184, 0.22);
   box-shadow:
     0 10px 24px rgba(0, 0, 0, 0.14),
@@ -1021,11 +1025,9 @@ body::after {
   pointer-events: none;
 
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0)
-    );
+      rgba(255, 255, 255, 0));
 
   transform:
     rotate(-25deg);
@@ -1046,8 +1048,7 @@ body::after {
 
   0% {
     transform:
-      translate3d(0, 0, 0)
-      rotate(-25deg);
+      translate3d(0, 0, 0) rotate(-25deg);
 
     opacity: 0;
   }
@@ -1058,8 +1059,7 @@ body::after {
 
   100% {
     transform:
-      translate3d(-140vw, 70vh, 0)
-      rotate(-25deg);
+      translate3d(-140vw, 70vh, 0) rotate(-25deg);
 
     opacity: 0;
   }
