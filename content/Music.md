@@ -13,7 +13,6 @@ title: 🎵Music
   <!-- 频谱区域 -->
   <div class="music-visualizer-wrapper">
     <div class="music-visualizer">
-      <!-- 40 根柱子 -->
       <span></span>...<span></span>
       <span></span>...<span></span>
       <span></span>...<span></span>
