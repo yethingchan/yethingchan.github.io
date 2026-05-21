@@ -4,7 +4,7 @@ share: true
 ---
 
 <!-- <div style="padding:1rem;font-family:'Brush Script MT',cursive;">
-    <span style="font-size:2rem;color:#666;"> Not all those who wander are lost. </span>
+    <span style="font-size:2rem;color:#666;"> Stay focused on what really matters.</span>
     <br>
     <span style="font-size:1.5rem;"> Welcome! </span>
 </div>
