@@ -23,7 +23,7 @@ share: true
 </div> -->
 
 <div style="padding:1rem;font-family: 'Apple Chancery', 'Segoe Script', 'Dancing Script', cursive;">
-    <span style="font-size:2rem;color:#666;"> Time changes everything. </span>
+    <span style="font-size:2rem;color:#666;"> Stay focused on what really matters.  </span>
     <br>
     <span style="font-size:1.5rem;"> Welcome! </span>
 </div>
@@ -34,7 +34,7 @@ share: true
 > 
 > 选择 `Quartz` 是因为只有它能够和 `Obsidian` 的双链进行联动，让博客更有 `wiki` 的感觉，文章之间的联系更紧密
 
-- **尼康正灰级玩家**  
+- **Nikon正灰级玩家**  
 - **江淮官话一级甲等**  
 - **热爱熬夜，爱好脱发**  
 - **不谙水性，溺流而上**  
