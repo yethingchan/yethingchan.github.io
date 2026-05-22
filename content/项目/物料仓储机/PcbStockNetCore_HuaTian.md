@@ -30,16 +30,16 @@ share: true
 ### Classes
 
 #### AesEncryptionAndDecryption
-- **[[AesEncryptionAndDecryption]]**
+- **[[项目/物料仓储机/代码文件/AesEncryptionAndDecryption]]**
 
 #### AppSettingHelper
-- **[[AppSettingHelper]]**
+- **[[项目/物料仓储机/代码文件/AppSettingHelper]]**
 
 #### ImageForBase64
-- **[[ImageForBase64]]**
+- **[[项目/物料仓储机/代码文件/ImageForBase64]]**
 
 #### RestClient
-- **[[RestClient]]**
+- **[[项目/物料仓储机/代码文件/RestClient]]**
 
 
 ### Controllers
@@ -61,13 +61,13 @@ share: true
 ##### TailBag
 ---
 ##### AlarmAcceptController
-- **[[AlarmAcceptController]]**
+- **[[项目/物料仓储机/代码文件/AlarmAcceptController]]**
 ##### AlarmListController.cs
 - getAlarmList的查询
 ##### CheckLineController.cs
 
 ##### CheckUserController.cs
-- **[[CheckUserController.cs]]**
+- **[[项目/物料仓储机/代码文件/CheckUserController.cs]]**
 ##### CreationAlarmController.cs
 
 ##### DeleteAlarmController.cs
