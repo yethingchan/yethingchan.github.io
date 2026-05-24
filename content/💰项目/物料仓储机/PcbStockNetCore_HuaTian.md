@@ -6,7 +6,7 @@ tags: []
 share: true
 ---
 # 项目结构
-- ![[Pasted image 20260419164521.png]]
+- ![[📂assets/Pasted image 20260419164521.png]]
 
 # DB
 ---
@@ -30,16 +30,16 @@ share: true
 ### Classes
 
 #### AesEncryptionAndDecryption
-- **[[项目/物料仓储机/代码文件/AesEncryptionAndDecryption]]**
+- **[[💰项目/物料仓储机/代码文件/AesEncryptionAndDecryption]]**
 
 #### AppSettingHelper
-- **[[项目/物料仓储机/代码文件/AppSettingHelper]]**
+- **[[💰项目/物料仓储机/代码文件/AppSettingHelper]]**
 
 #### ImageForBase64
-- **[[项目/物料仓储机/代码文件/ImageForBase64]]**
+- **[[💰项目/物料仓储机/代码文件/ImageForBase64]]**
 
 #### RestClient
-- **[[项目/物料仓储机/代码文件/RestClient]]**
+- **[[💰项目/物料仓储机/代码文件/RestClient]]**
 
 
 ### Controllers
@@ -61,13 +61,13 @@ share: true
 ##### TailBag
 ---
 ##### AlarmAcceptController
-- **[[项目/物料仓储机/代码文件/AlarmAcceptController]]**
+- **[[💰项目/物料仓储机/代码文件/AlarmAcceptController]]**
 ##### AlarmListController.cs
 - getAlarmList的查询
 ##### CheckLineController.cs
 
 ##### CheckUserController.cs
-- **[[项目/物料仓储机/代码文件/CheckUserController.cs]]**
+- **[[💰项目/物料仓储机/代码文件/CheckUserController.cs]]**
 ##### CreationAlarmController.cs
 
 ##### DeleteAlarmController.cs

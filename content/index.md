@@ -25,7 +25,6 @@ share: true
 <div style="padding:1rem;font-family: 'Apple Chancery', 'Segoe Script', 'Dancing Script', cursive;">
     <span style="font-size:2rem;color:#666;"> Stay focused on what really matters.  </span>
     <br>
-    <span style="font-size:1.5rem;"> Welcome! </span>
 </div>
 
 

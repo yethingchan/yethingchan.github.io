@@ -13,7 +13,7 @@ share: true
 	- [x] fixed folder  `放弃用Obsidian发布，改用命令发布`
 - [x] https://virgiling.wiki/ 参考修改
 - [x] 跳转文章的时候浮动目录没有数据
-- [x] F12抄一下样式![](assets/Pasted%20image%2020260508021102.png)
+- [x] F12抄一下样式![](📂assets/Pasted%20image%2020260508021102.png)
 - [x] 目录背景颜色加深
 - [x] 撰写自动化发布的脚本
 - [x] 正文区域文章卡片
