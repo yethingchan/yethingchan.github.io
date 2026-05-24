@@ -1,5 +1,5 @@
 ---
-title: 博客
+title: 📻博客
 share: true
 ---
 >[!Note]
