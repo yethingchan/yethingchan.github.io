@@ -9,3 +9,6 @@ share: true
 - [ ] 学习五笔输入法
 - [ ] 学习C# -- 熟练编写代码
 - [ ] 学习git并记录
+- [ ] 学习安卓
+- [ ] 学习springboot + Vue(React) 框架开发
+- [ ] 
