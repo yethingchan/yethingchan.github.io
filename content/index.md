@@ -3,24 +3,10 @@ title: 🏠首页
 share: true
 ---
 
-<!-- <div style="padding:1rem;font-family:'Brush Script MT',cursive;">
-    <span style="font-size:2rem;color:#666;"> Stay focused on what really matters.</span>
+<div style="padding:1rem;font-family:'Brush Script MT',cursive;">
+    <span style="font-size:2rem;color:#666;">学计算机一定要有一个强大的心态 </span>
     <br>
-    <span style="font-size:1.5rem;"> Welcome! </span>
-</div>
-
-
-<div style="padding:1rem;font-family:'Lucida Calligraphy',cursive;">
-    <span style="font-size:2rem;color:#666;"> Not all those who wander are lost. </span>
-    <br>
-    <span style="font-size:1.5rem;"> Welcome! </span>
-</div> -->
-
-<!-- <div style="padding:1rem;font-family:'Segoe Script',cursive;">
-    <span style="font-size:2rem;color:#666;"> Time changes everything. </span>
-    <br>
-    <span style="font-size:1.5rem;"> Welcome! </span>
-</div> -->
+   </div> 
 
 <div style="padding:1rem;font-family: 'Apple Chancery', 'Segoe Script', 'Dancing Script', cursive;">
     <span style="font-size:2rem;color:#666;"> Stay focused on what really matters.  </span>
