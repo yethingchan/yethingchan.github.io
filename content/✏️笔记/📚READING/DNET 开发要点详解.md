@@ -194,3 +194,23 @@ Winform 中的 UI 线程默认由 Program.Main 方法中的 Application.Run()进
 ![](assets/Pasted%20image%2020260525080101.png)
 从上图 2-8 中我们可以看出，整个应用程序的最终控制权并不在开发人员手中，而是在框架方，这种现象称为**“控制转换”**(Inversion Of Control，IOC)** ，即程序的运行流程由框架控制，几乎所有框架都遵循这个规则。
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
