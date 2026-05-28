@@ -11,4 +11,6 @@ share: true
 - [ ] 学习git并记录
 - [ ] 学习安卓
 - [ ] 学习springboot + Vue(React) 框架开发
+- [ ] Yolo
+- [ ] Halcon
 - [ ] 
