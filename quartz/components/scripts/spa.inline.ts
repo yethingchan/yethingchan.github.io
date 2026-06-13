@@ -110,7 +110,12 @@ async function _navigate(url: URL, isBack: boolean = false) {
       const el = document.getElementById(decodeURIComponent(url.hash.substring(1)))
       el?.scrollIntoView()
     } else {
-      window.scrollTo({ top: 0 })
+      const quartzBody = document.querySelector('.page > #quartz-body')
+      if (quartzBody && getComputedStyle(quartzBody).overflowY === 'auto') {
+        quartzBody.scrollTo({ top: 0 })
+      } else {
+        window.scrollTo({ top: 0 })
+      }
     }
   }
 

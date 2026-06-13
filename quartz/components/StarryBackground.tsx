@@ -22,11 +22,12 @@ const StarryBackground: QuartzComponentConstructor = () => {
 
               container.dataset.loaded = "true";
 
-              await loadSlim(tsParticles);
+              try {
+                await loadSlim(tsParticles);
 
-              await tsParticles.load({
-                id: "starry-background",
-                options: {
+                await tsParticles.load({
+                  id: "starry-background",
+                  options: {
                   fullScreen: {
                     enable: false
                   },
@@ -117,6 +118,9 @@ const StarryBackground: QuartzComponentConstructor = () => {
                   detectRetina: true
                 }
               });
+              } catch (e) {
+                console.warn("StarryBackground: CDN 加载失败，粒子效果已禁用", e);
+              }
             }
 
             initParticles();

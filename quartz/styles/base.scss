@@ -160,7 +160,7 @@ a {
 }
 
 .page {
-  max-width: calc(#{map.get($breakpoints, desktop)} + 300px);
+  max-width: 100%;
   margin: 0 auto;
   & article {
     & > h1 {
@@ -195,6 +195,12 @@ a {
     column-gap: #{map.get($desktopGrid, columnGap)};
     row-gap: #{map.get($desktopGrid, rowGap)};
     grid-template-areas: #{map.get($desktopGrid, templateAreas)};
+    // 桌面/平板端：让 #quartz-body 成为滚动容器，使内部 sticky 正常工作
+    @media all and not ($mobile) {
+      overflow-y: auto;
+      height: 100dvh;
+      scroll-padding-top: 4rem;
+    }
 
     @media all and ($tablet) {
       grid-template-columns: #{map.get($tabletGrid, templateColumns)};
@@ -224,20 +230,23 @@ a {
       box-sizing: border-box;
       padding: $topSpacing 2rem 2rem 2rem;
       display: flex;
-      height: 100vh;
+      height: 100dvh;
       position: sticky;
+      min-height: 0;
     }
 
     & .sidebar.left {
       z-index: 1;
       grid-area: grid-sidebar-left;
       flex-direction: column;
+      overflow: hidden;
       @media all and ($mobile) {
         gap: 0;
         align-items: center;
         position: initial;
         display: flex;
         height: unset;
+        overflow: visible;
         flex-direction: row;
         padding: 0;
         padding-top: 2rem;
@@ -255,6 +264,7 @@ a {
       @media all and not ($desktop) {
         position: initial;
         height: unset;
+        overflow: visible;
         width: 100%;
         flex-direction: row;
         padding: 0;

@@ -33,7 +33,8 @@
   overflow-y: hidden;
 
   min-height: 1.2rem;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
+  min-height: 0;
 
   &.collapsed {
     flex: 0 1 1.2rem;
@@ -113,9 +114,14 @@ button.desktop-explorer {
 
 .explorer-content {
   list-style: none;
-  overflow: hidden;
   overflow-y: auto;
+  overflow-x: hidden;
   margin-top: 0.5rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
 
   & ul {
     list-style: none;

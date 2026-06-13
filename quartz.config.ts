@@ -74,10 +74,6 @@ const config: QuartzConfig = {
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
       Plugin.HardLineBreaks(),
-      Plugin.SyntaxHighlighting({
-        theme: { light: "github-light", dark: "github-dark" },
-        keepBackground: false,
-      }),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [

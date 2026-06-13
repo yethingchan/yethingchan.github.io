@@ -18,6 +18,13 @@ export const Static: QuartzEmitterPlugin = () => ({
       await fs.promises.copyFile(src, dest)
       yield dest
     }
+    // robots.txt 需要放在站点根目录，复制到 output 根目录
+    const robotsSrc = joinSegments(staticPath, "robots.txt") as FilePath
+    if (fs.existsSync(robotsSrc)) {
+      const robotsDest = joinSegments(argv.output, "robots.txt") as FilePath
+      await fs.promises.copyFile(robotsSrc, robotsDest)
+      yield robotsDest
+    }
   },
   async *partialEmit() {},
 })

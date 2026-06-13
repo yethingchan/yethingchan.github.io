@@ -101,6 +101,8 @@ const tokenizeTerm = (term: string) => {
   return tokens.sort((a, b) => b.length - a.length) // always highlight longest terms first
 }
 
+const escapeHTML = (str: string) => str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+
 function highlight(searchTerm: string, text: string, trim?: boolean) {
   const tokenizedTerms = tokenizeTerm(searchTerm)
   let tokenizedText = text.split(/\s+/).filter((t) => t !== "")
@@ -134,7 +136,7 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
       for (const searchTok of tokenizedTerms) {
         if (tok.toLowerCase().includes(searchTok.toLowerCase())) {
           const regex = new RegExp(searchTok.toLowerCase(), "gi")
-          return tok.replace(regex, `<span class="highlight">$&</span>`)
+          return escapeHTML(tok).replace(regex, `<span class="highlight">$&</span>`)
         }
       }
       return tok
@@ -326,9 +328,9 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
     return tags
       .map((tag) => {
         if (tag.toLowerCase().includes(term.toLowerCase())) {
-          return `<li><p class="match-tag">#${tag}</p></li>`
+          return `<li><p class="match-tag">#${escapeHTML(tag)}</p></li>`
         } else {
-          return `<li><p>#${tag}</p></li>`
+          return `<li><p>#${escapeHTML(tag)}</p></li>`
         }
       })
       .slice(0, numTagResults)
@@ -345,9 +347,9 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
     itemTile.id = slug
     itemTile.href = resolveUrl(slug).toString()
     itemTile.innerHTML = `
-      <h3 class="card-title">${title}</h3>
+      <h3 class="card-title">${escapeHTML(title)}</h3>
       ${htmlTags}
-      <p class="card-description">${content}</p>
+      <p class="card-description">${escapeHTML(content)}</p>
     `
     itemTile.addEventListener("click", (event) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return

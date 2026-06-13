@@ -99,6 +99,11 @@ pre::-webkit-scrollbar-thumb:hover {
 html {
   overflow-y: scroll;
   scrollbar-gutter: stable;
+  // 桌面/平板端：禁止 html/body 滚动，由 #quartz-body 内部滚动
+  @media (min-width: 801px) {
+    overflow-y: hidden;
+    height: 100dvh;
+  }
 }
 
 body {
@@ -106,6 +111,10 @@ body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  @media (min-width: 801px) {
+    overflow-y: hidden;
+    height: 100dvh;
+  }
 }
 
 body {
@@ -165,14 +174,14 @@ body {
 }
 
 body,
-.quartz-content,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "LXGWWenKaiScreenR" !important;
+body .quartz-content,
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  font-family: "LXGWWenKaiScreenR";
 }
 
 /* ==============================
@@ -360,6 +369,13 @@ h6 {
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
+}
+
+// 桌面端隐藏浮动TOC（右侧已有目录）
+@media (min-width: 801px) {
+  #floating-toc {
+    display: none !important;
+  }
 }
 
 /* TOC Items */
@@ -553,6 +569,11 @@ h6 {
     transform 0.12s linear;
 }
 
+:root[saved-theme="dark"] #reading-progress {
+  background: linear-gradient(90deg, #818cf8, #6366f1, #a78bfa);
+  box-shadow: 0 0 12px rgba(129, 140, 248, 0.4);
+}
+
 /* 当前目录高亮 */
 .toc-item.active {
   background: rgba(99, 102, 241, 0.14);
@@ -570,12 +591,6 @@ h6 {
 /* ==============================
    Quartz Page Transition
    ============================== */
-
-/* 防止页面宽度抖动 */
-html {
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
-}
 
 /* 只动画文章内容 */
 .page-transition article {
@@ -604,16 +619,8 @@ html {
    ============================== */
 
 .toc {
-  // 会跟随
-  // max-height: none !important;
-  // height: auto !important;
-
-  // overflow: visible !important;
-  // top: 1rem;
-
-  // 不会跟随
-  max-height: none !important;
-  overflow: visible !important;
+  max-height: none;
+  overflow: visible;
 
   position: sticky;
   top: 1rem;
@@ -621,14 +628,14 @@ html {
 
 /* Quartz 默认 sticky 限制 */
 .desktop-only .toc {
-  max-height: none !important;
-  overflow: visible !important;
+  max-height: none;
+  overflow: visible;
 }
 
 /* 如果外层还有限制 */
 .right.sidebar {
-  overflow: visible !important;
-  height: auto !important;
+  overflow: visible;
+  height: auto;
 }
 
 
@@ -814,70 +821,6 @@ html {
 }
 
 /* ==============================
-
-.music-page {
-  position: relative;
-
-  width: 100%;
-
-  padding: 1.2rem;
-
-  border-radius: 24px;
-
-  overflow: hidden;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,0.12),
-      rgba(255,255,255,0.04)
-    );
-
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-
-  border: 1px solid rgba(255,255,255,0.08);
-
-  box-shadow:
-    0 24px 64px rgba(0,0,0,0.24),
-    inset 0 1px 1px rgba(255,255,255,0.06);
-}
-
-.music-page iframe {
-  width: 100%;
-
-  border: none;
-
-  border-radius: 18px;
-
-  overflow: hidden;
-
-  background: transparent;
-}
-
-/* 暗色模式 */
-:root[saved-theme="dark"] .music-page {
-  background:
-    linear-gradient(180deg,
-      rgba(0, 0, 0, 0.24),
-      rgba(8, 13, 28, 0.42));
-}
-
-/* 移动端 */
-@media (max-width: 800px) {
-  .music-page {
-    padding: 0.8rem;
-    border-radius: 18px;
-  }
-
-  .music-page iframe {
-    height: 620px;
-  }
-}
-
-
-
-/* ==============================
    Starry Background
    ============================== */
 
@@ -907,52 +850,7 @@ html {
 }
 
 /* ==============================
-   Aurora Background
-   Aurora 极光背景
-   ============================== */
-
-// body::before {
-//   content: "";
-
-//   position: fixed;
-//   inset: -20%;
-
-//   z-index: -20;
-
-//   pointer-events: none;
-
-//   background:
-//     radial-gradient(circle at 20% 30%,
-//       rgba(56, 189, 248, 0.16),
-//       transparent 32%),
-
-//     radial-gradient(circle at 80% 20%,
-//       rgba(168, 85, 247, 0.18),
-//       transparent 34%),
-
-//     radial-gradient(circle at 50% 80%,
-//       rgba(99, 102, 241, 0.14),
-//       transparent 38%);
-
-//   filter: blur(80px);
-
-//   animation: auroraMove 18s ease-in-out infinite alternate;
-// }
-
-// @keyframes auroraMove {
-//   from {
-//     transform:
-//       translate3d(-2%, -1%, 0) scale(1);
-//   }
-
-//   to {
-//     transform:
-//       translate3d(2%, 2%, 0) scale(1.08);
-//   }
-// }
-
-/* ==============================
-   Noise Grain 噪点 
+   Noise Grain 噪点
    ============================== */
 
 body::after {
@@ -968,9 +866,52 @@ body::after {
   opacity: 0.05;
 
   background-image:
-    url("https://grainy-gradients.vercel.app/noise.svg");
+    url("/static/noise.svg");
 
   mix-blend-mode: soft-light;
+}
+
+/* ==============================
+   Print Styles
+   ============================== */
+@media print {
+  .sidebar,
+  #floating-stack,
+  #floating-toc,
+  #reading-progress,
+  #starry-background,
+  .page-header,
+  .search-container,
+  .graph-container,
+  body::after {
+    display: none !important;
+  }
+
+  .page > #quartz-body {
+    overflow: visible !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  .page {
+    max-width: 100% !important;
+  }
+
+  article,
+  .quartz-content {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  a[href^="#"]::after {
+    content: "";
+  }
 }
 
 /* ==============================

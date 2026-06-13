@@ -11,6 +11,8 @@ const observer = new IntersectionObserver((entries) => {
       }
     }
   }
+}, {
+  rootMargin: "-20% 0px -70% 0px",
 })
 
 function toggleToc(this: HTMLElement) {

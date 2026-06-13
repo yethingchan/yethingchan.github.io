@@ -3,9 +3,6 @@ import { QuartzComponentConstructor } from "./types";
 const BackToTop: QuartzComponentConstructor = () => {
   return () => (
     <>
-      {/* 星空粒子背景 */}
-      <div id="tsparticles"></div>
-
       {/* 顶部阅读进度条 */}
       <div id="reading-progress"></div>
 
@@ -17,7 +14,7 @@ const BackToTop: QuartzComponentConstructor = () => {
         </button>
 
         {/* 浮动时间按钮 */}
-        <div id="floating-clock">--:--</div>
+        <div id="floating-clock" role="timer" aria-label="当前时间">--:--</div>
       </div>
 
       {/* TOC 面板 */}
@@ -34,6 +31,7 @@ const BackToTop: QuartzComponentConstructor = () => {
   let clockTimer = null;
   let tocObserver = null;
   let scrollHandlerBound = false;
+  let clickHandlerBound = false;
 
   /* =========================
      锁定滚动条宽度
@@ -49,6 +47,109 @@ const BackToTop: QuartzComponentConstructor = () => {
   );
 
   document.documentElement.style.overflowY = "scroll";
+
+  /* =========================
+     获取滚动容器（桌面端为 #quartz-body，移动端为 window）
+  ========================= */
+  function getScrollContainer() {
+    const quartzBody = document.querySelector('.page > #quartz-body');
+    if (quartzBody && getComputedStyle(quartzBody).overflowY === 'auto') {
+      return quartzBody;
+    }
+    return window;
+  }
+
+  function getScrollTop() {
+    const c = getScrollContainer();
+    return c === window ? window.scrollY : c.scrollTop;
+  }
+
+  function getScrollHeight() {
+    const c = getScrollContainer();
+    if (c === window) return document.body.scrollHeight;
+    return c.scrollHeight;
+  }
+
+  function getClientHeight() {
+    const c = getScrollContainer();
+    if (c === window) return window.innerHeight;
+    return c.clientHeight;
+  }
+
+  function scrollToTop() {
+    const c = getScrollContainer();
+    if (c === window) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      c.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  function scrollToBottom() {
+    const c = getScrollContainer();
+    if (c === window) {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    } else {
+      c.scrollTo({ top: c.scrollHeight, behavior: "smooth" });
+    }
+  }
+
+  /* =========================
+     公共 TOC 构建函数
+  ========================= */
+  function buildAndShowToc() {
+    const tocPanel = document.getElementById("floating-toc");
+    const tocContent = document.getElementById("floating-toc-content");
+    if (!tocPanel || !tocContent) return;
+
+    tocContent.innerHTML = "";
+
+    const headings = document.querySelectorAll(
+      "article h1, article h2, article h3"
+    );
+
+    headings.forEach((heading, index) => {
+      if (!heading.id) {
+        heading.id = "heading-" + index;
+      }
+      const a = document.createElement("a");
+      a.href = "#" + heading.id;
+      a.textContent = heading.innerText;
+      a.className = "toc-item toc-" + heading.tagName.toLowerCase();
+      a.onclick = () => {
+        tocPanel.classList.remove("show");
+      };
+      tocContent.appendChild(a);
+    });
+
+    /* TOC 当前标题高亮 */
+    if (tocObserver) {
+      tocObserver.disconnect();
+    }
+
+    tocObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id;
+          const tocLinks = document.querySelectorAll(".toc-item");
+          tocLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#" + id) {
+              link.classList.add("active");
+            }
+          });
+        });
+      },
+      {
+        rootMargin: "-25% 0px -60% 0px",
+        threshold: 0,
+      }
+    );
+
+    headings.forEach((h) => tocObserver.observe(h));
+    tocPanel.classList.toggle("show");
+  }
 
   /* =========================
      页面切换动画
@@ -86,11 +187,11 @@ const BackToTop: QuartzComponentConstructor = () => {
     const progressBar =
       document.getElementById("reading-progress");
 
-    const scrollTop = window.scrollY;
+    const scrollTop = getScrollTop();
 
     const scrollHeight =
-      document.body.scrollHeight -
-      window.innerHeight;
+      getScrollHeight() -
+      getClientHeight();
 
     const progress =
       Math.min(
@@ -128,7 +229,7 @@ const BackToTop: QuartzComponentConstructor = () => {
     if (banner) {
 
       const offset =
-        window.scrollY * 0.12;
+        getScrollTop() * 0.12;
 
       banner.style.transform =
         \`scale(1.06) translateY(\${offset}px)\`;
@@ -161,7 +262,8 @@ const BackToTop: QuartzComponentConstructor = () => {
     ========================= */
     if (!scrollHandlerBound) {
 
-      window.addEventListener(
+      const container = getScrollContainer();
+      container.addEventListener(
         "scroll",
         updateScroll,
         { passive: true }
@@ -179,15 +281,11 @@ const BackToTop: QuartzComponentConstructor = () => {
 
       scrollBtn.onclick = () => {
 
-        window.scrollTo({
-
-          top:
-            window.scrollY < 200
-              ? document.body.scrollHeight
-              : 0,
-
-          behavior: "smooth",
-        });
+        if (getScrollTop() < 200) {
+          scrollToBottom();
+        } else {
+          scrollToTop();
+        }
       };
     }
 
@@ -230,164 +328,37 @@ const BackToTop: QuartzComponentConstructor = () => {
 
         e.stopPropagation();
 
-        tocContent.innerHTML = "";
+        buildAndShowToc();
+      };
 
-        const headings =
-          document.querySelectorAll(
-            "article h1, article h2, article h3"
-          );
+      /* 点击外部关闭 - 只绑定一次 */
+      if (!clickHandlerBound) {
+        document.addEventListener(
+          "click",
+          (e) => {
 
-        headings.forEach(
-          (heading, index) => {
-
-            if (!heading.id) {
-
-              heading.id =
-                "heading-" + index;
-            }
-
-            const a =
-              document.createElement("a");
-
-            a.href =
-              "#" + heading.id;
-
-            a.textContent =
-              heading.innerText;
-
-            a.className =
-              "toc-item toc-" +
-              heading.tagName.toLowerCase();
-
-            a.onclick = () => {
+            if (
+              !tocPanel.contains(e.target) &&
+              !clockBtn.contains(e.target)
+            ) {
 
               tocPanel.classList.remove(
                 "show"
               );
-            };
-
-            tocContent.appendChild(a);
+            }
           }
         );
-
-        /* TOC 当前标题高亮 */
-        if (tocObserver) {
-
-          tocObserver.disconnect();
-        }
-
-        tocObserver =
-          new IntersectionObserver(
-            (entries) => {
-
-              entries.forEach((entry) => {
-
-                if (!entry.isIntersecting)
-                  return;
-
-                const id =
-                  entry.target.id;
-
-                const tocLinks =
-                  document.querySelectorAll(
-                    ".toc-item"
-                  );
-
-                tocLinks.forEach((link) => {
-
-                  link.classList.remove(
-                    "active"
-                  );
-
-                  if (
-                    link.getAttribute("href") ===
-                    "#" + id
-                  ) {
-
-                    link.classList.add(
-                      "active"
-                    );
-                  }
-                });
-              });
-            },
-            {
-              rootMargin:
-                "-25% 0px -60% 0px",
-
-              threshold: 0,
-            }
-          );
-
-        headings.forEach((h) =>
-          tocObserver.observe(h)
-        );
-
-        tocPanel.classList.toggle("show");
-      };
-
-      /* 点击外部关闭 */
-      document.addEventListener(
-        "click",
-        (e) => {
-
-          if (
-            !tocPanel.contains(e.target) &&
-            !clockBtn.contains(e.target)
-          ) {
-
-            tocPanel.classList.remove(
-              "show"
-            );
+        clickHandlerBound = true;
+      }
+      /* PC端浮动目录触发快捷键 - 只绑定一次 */
+      if (!clickHandlerBound) {
+        document.addEventListener("keydown", (e) => {
+          if (e.ctrlKey && e.key.toLowerCase() === "m") {
+            buildAndShowToc();
           }
-        }
-      );
-      /* PC端浮动目录触发快捷键*/
-document.addEventListener("keydown", (e) => {
-  if (e.ctrlKey && e.key.toLowerCase() === "m") {
-    const tocPanel = document.getElementById("floating-toc");
-    const tocContent = document.getElementById("floating-toc-content");
-    const clockBtn = document.getElementById("floating-clock");
-    if (!tocPanel || !tocContent || !clockBtn) return;
-
-    tocContent.innerHTML = "";
-
-    const headings = document.querySelectorAll(
-      "article h1, article h2, article h3"
-    );
-
-    headings.forEach((heading, index) => {
-      if (!heading.id) heading.id = "heading-" + index;
-      const a = document.createElement("a");
-      a.href = "#" + heading.id;
-      a.textContent = heading.innerText;
-      a.className = "toc-item toc-" + heading.tagName.toLowerCase();
-      a.onclick = () => tocPanel.classList.remove("show");
-      tocContent.appendChild(a);
-    });
-
-    if (tocObserver) tocObserver.disconnect();
-    tocObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const id = entry.target.id;
-          const tocLinks = document.querySelectorAll(".toc-item");
-          tocLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === "#" + id) {
-              link.classList.add("active");
-            }
-          });
         });
-      },
-      { rootMargin: "-25% 0px -60% 0px", threshold: 0 }
-    );
-
-    headings.forEach((h) => tocObserver.observe(h));
-    tocPanel.classList.toggle("show");
-  }
-});
+        clickHandlerBound = true;
+      }
     }
   }
 
