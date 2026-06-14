@@ -51,10 +51,16 @@ ul.toc-content.overflow {
     color: var(--dark);
     opacity: 0.35;
     transition:
-      0.5s ease opacity,
-      0.3s ease color;
+      0.3s ease opacity,
+      0.3s ease color,
+      0.3s ease border-color;
+    border-left: 2px solid transparent;
+    padding-left: calc(0.5rem - 2px);
+
     &.in-view {
-      opacity: 0.75;
+      opacity: 1;
+      color: var(--secondary);
+      border-left-color: var(--secondary);
     }
   }
 
