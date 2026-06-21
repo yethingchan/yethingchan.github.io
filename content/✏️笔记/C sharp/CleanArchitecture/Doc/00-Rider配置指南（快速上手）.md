@@ -267,13 +267,13 @@ Authorization: Bearer {{token}}
 
 以下插件对 CleanArchitecture 项目开发有帮助：
 
-| 插件                      | 作用                           | 安装方式                             |
-| ----------------------- | ---------------------------- | -------------------------------- |
-| **Key Promoter X**      | 用鼠标操作时弹出对应快捷键提示，帮你记住快捷键      | Settings → Plugins → Marketplace |
-| **.ignore**             | 管理 .gitignore 文件，提供模板和语法高亮   | Settings → Plugins → Marketplace |
-| **EnvFile**             | 从文件加载环境变量到 Run Configuration | Settings → Plugins → Marketplace |
-| **Rainbow Brackets**    | 用不同颜色标记嵌套括号，提升可读性            | Settings → Plugins → Marketplace |
-| **String Manipulation** | 字符串大小写转换、驼峰/蛇形互转             | Settings → Plugins → Marketplace |
+| 插件 | 作用 | 安装方式 |
+|------|------|----------|
+| **Key Promoter X** | 用鼠标操作时弹出对应快捷键提示，帮你记住快捷键 | Settings → Plugins → Marketplace |
+| **.ignore** | 管理 .gitignore 文件，提供模板和语法高亮 | Settings → Plugins → Marketplace |
+| **EnvFile** | 从文件加载环境变量到 Run Configuration | Settings → Plugins → Marketplace |
+| **Rainbow Brackets** | 用不同颜色标记嵌套括号，提升可读性 | Settings → Plugins → Marketplace |
+| **String Manipulation** | 字符串大小写转换、驼峰/蛇形互转 | Settings → Plugins → Marketplace |
 
 ---
 
