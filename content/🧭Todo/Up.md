@@ -13,4 +13,4 @@ share: true
 - [ ] 学习springboot + Vue(React) 框架开发
 - [ ] Yolo
 - [ ] Halcon
-- [ ] 
+- [ ] fastapi
