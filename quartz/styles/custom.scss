@@ -405,6 +405,55 @@ body h6 {
 /* ==============================
    Mobile Adjustments
    ============================== */
+
+// Explorer 浮动按钮 — 仅移动端显示，桌面端隐藏
+#floating-explorer-btn {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  #floating-explorer-btn {
+    width: 56px;
+    height: 48px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.94));
+    color: #111827;
+    border: 1px solid #222222;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.22),
+      inset 0 -1px 1px rgba(255, 255, 255, 0.04),
+      0 12px 32px rgba(15, 23, 42, 0.18);
+    cursor: pointer;
+    transition: transform 0.25s ease;
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+
+  #floating-explorer-btn:hover {
+    transform: translateY(-2px) scale(1.04);
+  }
+
+  #floating-explorer-btn:active {
+    transform: scale(0.96);
+  }
+
+  // Dark Mode
+  :root[saved-theme="dark"] #floating-explorer-btn {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.62), rgba(8, 13, 28, 0.56));
+    color: #e5e7eb;
+    border: 1px solid #cccccc;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.22),
+      inset 0 -1px 1px rgba(255, 255, 255, 0.04),
+      0 12px 34px rgba(0, 0, 0, 0.22);
+  }
+}
+
 @media (max-width: 800px) {
   #floating-stack {
     right: 1rem;
@@ -419,7 +468,8 @@ body h6 {
 
   #floating-toc {
     right: 1rem;
-    bottom: calc(1rem + 56px + 44px + 8px*2);
+    // 更新底部偏移：scroll-toggle(56) + clock(44) + explorer-btn(48) + gaps(8*3)
+    bottom: calc(1rem + 56px + 44px + 48px + 8px * 3);
     width: calc(100vw - 2rem);
     max-width: 320px;
   }
@@ -1120,5 +1170,322 @@ body::after {
   }
   .music-page-wrapper iframe {
     height: 400px;
+  }
+}
+
+/* ==============================================
+   Mobile Responsive Enhancements
+   移动端全面适配
+   ============================================== */
+
+@media (max-width: 800px) {
+
+  /* ---------- 文本字体与排版 ---------- */
+
+  // 基础正文字体：移动端稍大，提升可读性
+  body {
+    font-size: 16px;
+  }
+
+  // 文章正文行高增加，段间距增加
+  article {
+    padding: 0.8rem 1.1rem !important;
+    border-radius: 12px !important;
+  }
+
+  article p,
+  article li,
+  article td,
+  article th,
+  article tbody {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  // 标题适配
+  .page > #quartz-body .page-header h1.article-title {
+    font-size: 1.5rem;
+    margin: 1rem 0 0 0;
+  }
+
+  article > h1 {
+    font-size: 1.35rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  article > h2 {
+    font-size: 1.2rem;
+    margin-top: 1.35rem;
+    margin-bottom: 0.65rem;
+  }
+
+  article > h3 {
+    font-size: 1.05rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.55rem;
+  }
+
+  article > h4,
+  article > h5,
+  article > h6 {
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  // 引用块
+  article blockquote {
+    margin: 0.8rem 0;
+    padding-left: 0.8rem;
+    border-left-width: 2.5px;
+    font-size: 14.5px;
+    line-height: 1.7;
+  }
+
+  // 列表
+  article ul,
+  article ol {
+    padding-left: 1.2rem;
+  }
+
+  article li {
+    margin-bottom: 0.25rem;
+  }
+
+  // 面包屑
+  .breadcrumb-container {
+    margin-top: 0.5rem;
+    gap: 0.3rem;
+    font-size: 0.82rem;
+  }
+
+  // 内容元信息（日期 + 阅读时间）
+  .content-meta {
+    font-size: 0.82rem;
+  }
+
+  // 页脚分割线
+  article + hr {
+    margin: 1.2rem auto;
+  }
+
+  /* ---------- 代码块字体（舒展风格） ---------- */
+
+  // 行内代码
+  :not(pre) > code {
+    font-size: 0.84em;
+    padding: 0.12rem 0.35rem;
+    // 使用更舒展的等宽字体
+    font-family:
+      "JetBrains Mono",
+      "Cascadia Code",
+      "Fira Code",
+      "SF Mono",
+      "Consolas",
+      "Menlo",
+      monospace;
+    letter-spacing: 0.01em;
+    word-spacing: 0.05em;
+  }
+
+  // 代码块（pre）
+  pre {
+    font-size: 0.84rem !important;
+    line-height: 1.65 !important;
+    padding: 0.75rem 2.8rem 0.75rem 0.75rem !important;
+    margin: 0.9rem 0 !important;
+    border-radius: 10px !important;
+    // 舒展等宽字体
+    font-family:
+      "JetBrains Mono",
+      "Cascadia Code",
+      "Fira Code",
+      "SF Mono",
+      "Consolas",
+      "Menlo",
+      monospace !important;
+    letter-spacing: 0.02em;
+    word-spacing: 0.06em;
+    // 移动端去掉过大的 box-shadow
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+
+    // 代码块内 code
+    & > code {
+      font-size: inherit !important;
+      line-height: inherit !important;
+      font-family: inherit !important;
+      letter-spacing: inherit;
+      word-spacing: inherit;
+    }
+  }
+
+  // 代码块行号宽度微调
+  pre > code > [data-line]::before {
+    margin-right: 0.6rem;
+    font-size: 0.78em;
+  }
+
+  pre::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  // 代码块标题
+  figure[data-rehype-pretty-code-figure] > [data-rehype-pretty-code-title] {
+    font-size: 0.8rem;
+    padding: 0.08rem 0.4rem;
+    margin-bottom: -0.4rem;
+  }
+
+  /* ---------- 链接和内部链接 ---------- */
+
+  article a.internal {
+    padding: 0 0.08rem;
+    border-radius: 4px;
+    line-height: 1.5rem;
+  }
+
+  /* ---------- 图片 ---------- */
+
+  article img {
+    border-radius: 8px;
+    margin: 0.7rem 0;
+  }
+
+  /* ---------- 表格 ---------- */
+
+  .table-container {
+    margin: 0 -0.5rem;
+
+    & > table {
+      margin: 0.5rem;
+      padding: 0.8rem;
+      font-size: 0.88rem;
+
+      th, td {
+        padding: 0.3rem 0.5rem;
+        min-width: 50px;
+      }
+
+      & > * {
+        line-height: 1.7;
+      }
+    }
+  }
+
+  /* ---------- KaTeX 公式 ---------- */
+
+  .katex-display {
+    overflow-x: auto;
+    padding: 0.3rem 0;
+
+    .katex {
+      font-size: 0.95em;
+    }
+  }
+
+  /* ---------- 标签列表 ---------- */
+
+  .tags-container {
+    gap: 0.3rem;
+    margin-top: 0.3rem;
+
+    .tag-link {
+      font-size: 0.78rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 8px;
+    }
+  }
+
+  /* ---------- 侧栏（移动端已有基础样式，微调） ---------- */
+
+  .sidebar.left {
+    padding-top: 1.2rem;
+
+    // 侧栏中的搜索栏
+    .search-button {
+      padding: 0.35rem 0.7rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  /* ---------- 反向链接 ---------- */
+
+  .backlinks {
+    margin-top: 1rem;
+
+    & > h3 {
+      font-size: 0.9rem;
+    }
+
+    li a {
+      font-size: 0.88rem;
+    }
+  }
+
+  /* ---------- 浮动组件隐藏光标发光 ---------- */
+
+  #cursor-glow {
+    display: none !important;
+  }
+
+  /* ---------- 页面整体内边距微调 ---------- */
+
+  .page > #quartz-body {
+    padding: 0 0.6rem;
+  }
+}
+
+/* ---------- 极小屏幕适配（<= 480px） ---------- */
+
+@media (max-width: 480px) {
+
+  body {
+    font-size: 15px;
+  }
+
+  article {
+    padding: 0.6rem 0.8rem !important;
+    border-radius: 10px !important;
+  }
+
+  article p,
+  article li {
+    font-size: 14.5px;
+  }
+
+  article > h1 {
+    font-size: 1.25rem;
+  }
+
+  article > h2 {
+    font-size: 1.12rem;
+  }
+
+  article > h3 {
+    font-size: 1rem;
+  }
+
+  pre {
+    font-size: 0.78rem !important;
+    line-height: 1.55 !important;
+    padding: 0.6rem 2.4rem 0.6rem 0.6rem !important;
+    border-radius: 8px !important;
+  }
+
+  :not(pre) > code {
+    font-size: 0.8em;
+    padding: 0.1rem 0.3rem;
+  }
+
+  // 浮动 TOC 全宽
+  #floating-toc {
+    width: calc(100vw - 1.2rem);
+    max-width: none;
+    border-radius: 12px;
+  }
+
+  .page > #quartz-body {
+    padding: 0 0.35rem;
   }
 }

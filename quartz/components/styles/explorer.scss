@@ -37,7 +37,8 @@
   min-height: 0;
 
   &.collapsed {
-    flex: 0 1 1.2rem;
+    // 使用 auto 让高度由 header 决定，不再强制 1.2rem 导致文字裁切
+    flex: 0 1 auto;
 
     & .fold {
       transform: rotateZ(-90deg);

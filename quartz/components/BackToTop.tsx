@@ -15,6 +15,13 @@ const BackToTop: QuartzComponentConstructor = () => {
 
         {/* 浮动时间按钮 */}
         <div id="floating-clock" role="timer" aria-label="当前时间">--:--</div>
+
+        {/* 移动端 Explorer 按钮 */}
+        <button id="floating-explorer-btn" aria-label="Explorer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/>
+          </svg>
+        </button>
       </div>
 
       {/* TOC 面板 */}
@@ -256,6 +263,29 @@ const BackToTop: QuartzComponentConstructor = () => {
 
     const tocContent =
       document.getElementById("floating-toc-content");
+
+    /* =========================
+       Explorer Button (mobile)
+    ========================= */
+    const explorerBtn =
+      document.getElementById("floating-explorer-btn");
+
+    if (explorerBtn) {
+      explorerBtn.onclick = () => {
+        const explorer = document.querySelector(".explorer");
+        if (!explorer) return;
+        const isCollapsed = explorer.classList.contains("collapsed");
+        if (isCollapsed) {
+          explorer.classList.remove("collapsed");
+          explorer.setAttribute("aria-expanded", "true");
+          document.documentElement.classList.add("mobile-no-scroll");
+        } else {
+          explorer.classList.add("collapsed");
+          explorer.setAttribute("aria-expanded", "false");
+          document.documentElement.classList.remove("mobile-no-scroll");
+        }
+      };
+    }
 
     /* =========================
        绑定 Scroll

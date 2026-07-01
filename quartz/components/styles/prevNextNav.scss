@@ -66,3 +66,47 @@
     }
   }
 }
+
+// 移动端适配：垂直堆叠，更紧凑
+@media all and ($mobile) {
+  .prev-next-nav {
+    flex-direction: column;
+    gap: 0.4rem;
+    margin: 1rem 0 0.5rem 0;
+
+    .prev-next-link {
+      padding: 0.75rem 1rem;
+      border-radius: 0.6rem;
+
+      &.prev,
+      &.next {
+        text-align: left;
+      }
+
+      // 移动端添加方向箭头提示
+      &.prev::before {
+        content: "\2190";
+        margin-right: 0.35rem;
+        font-size: 0.85rem;
+        opacity: 0.5;
+      }
+
+      &.next::before {
+        content: "\2192";
+        margin-right: 0.35rem;
+        font-size: 0.85rem;
+        opacity: 0.5;
+      }
+
+      .prev-next-direction {
+        font-size: 0.68rem;
+      }
+
+      .prev-next-title {
+        font-size: 0.88rem;
+        line-height: 1.35;
+        -webkit-line-clamp: 1;
+      }
+    }
+  }
+}
