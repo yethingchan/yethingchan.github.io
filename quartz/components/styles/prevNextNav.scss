@@ -1,0 +1,68 @@
+@use "../../styles/variables.scss" as *;
+
+.prev-next-nav {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+  margin: 1.5rem 0 0.5rem 0;
+
+  .prev-next-link {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid var(--gray);
+
+    &.prev {
+      text-align: left;
+    }
+
+    &.next {
+      text-align: right;
+    }
+
+    .prev-next-direction {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gray);
+      font-weight: $semiBoldWeight;
+    }
+
+    .prev-next-title {
+      font-size: 0.95rem;
+      font-weight: $normalWeight;
+      line-height: 1.4;
+      color: var(--dark);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    &:not(.disabled):hover {
+      border-color: var(--secondary);
+      background-color: var(--highlight);
+
+      .prev-next-title {
+        color: var(--secondary);
+      }
+    }
+
+    &.disabled {
+      opacity: 0.4;
+      cursor: default;
+      border-style: dashed;
+
+      .prev-next-title {
+        color: var(--gray);
+        font-style: italic;
+      }
+    }
+  }
+}

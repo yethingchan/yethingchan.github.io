@@ -59,6 +59,12 @@ export default {
     contentMeta: {
       readingTime: ({ minutes }) => `${minutes}分钟阅读`,
     },
+    prevNextNav: {
+      previous: "上一章",
+      next: "下一章",
+      noPrev: "已是第一章",
+      noNext: "已是最后一章",
+    },
   },
   pages: {
     rss: {

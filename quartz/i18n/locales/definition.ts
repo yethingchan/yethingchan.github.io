@@ -62,6 +62,12 @@ export interface Translation {
     contentMeta: {
       readingTime: (variables: { minutes: number }) => string
     }
+    prevNextNav: {
+      previous: string
+      next: string
+      noPrev: string
+      noNext: string
+    }
   }
   pages: {
     rss: {

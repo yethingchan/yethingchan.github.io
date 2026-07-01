@@ -45,6 +45,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Backlinks(),
   ],
   afterBody: [
+    Component.PrevNextNav(),
     BackToTop(undefined),
     // 取消注释并填入你的 Giscus 配置即可启用评论：
     // Component.Comments({
