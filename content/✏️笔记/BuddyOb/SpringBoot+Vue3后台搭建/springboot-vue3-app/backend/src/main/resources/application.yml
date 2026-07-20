@@ -1,0 +1,58 @@
+# ============================================================
+# 默认 profile（零依赖，开箱即跑）
+# 数据库用 H2 内存库，缓存用本地 ConcurrentHashMap，
+# 不需要安装 MySQL / Redis 即可启动测试。
+# 切换 MySQL + Redis：spring-boot:run -Dspring.profiles.active=mysql
+# ============================================================
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: admin
+  # 默认不加载 Redis 自动配置（避免连不上 Redis 而启动失败）
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+  # H2 内存库（MySQL 兼容模式）
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:admin;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE
+    username: sa
+    password: ""
+  # 启动时自动执行建表 + 种子数据（仅默认 profile 用）
+  sql:
+    init:
+      mode: always
+      # Windows 下 spring.sql.init 默认按平台编码(GBK) 读 SQL，会导致中文乱码；
+      # 显式指定 UTF-8 让 data.sql 里的角色/菜单/公告中文正确入库。
+      encoding: UTF-8
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# JWT 配置
+jwt:
+  # 密钥至少 32 字节（256 bit），否则 WeakKeyException
+  secret: "Zk7qP9xLm2Vb8nRt4Wc6Ys1Ad3Fe5Gh7Jk9Lp0Zx2Cv4Bn6Mq8Tr0Uw1Xy3"
+  expiration-minutes: 720
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.example.admin.domain
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+      table-prefix: ""
+
+logging:
+  level:
+    com.example.admin: debug
+    org.springframework.security: warn

@@ -1,0 +1,19 @@
+package com.example.admin.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * 操作日志注解：标记在 Controller 方法上，由 LogAspect 自动入库。
+ */
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Log {
+    /** 模块标题，如"用户管理" */
+    String title() default "";
+
+    /** 业务类型：0其它 1新增 2修改 3删除 */
+    int businessType() default 0;
+}

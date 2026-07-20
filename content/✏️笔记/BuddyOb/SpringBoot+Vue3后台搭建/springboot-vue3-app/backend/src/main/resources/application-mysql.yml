@@ -1,0 +1,45 @@
+# ============================================================
+# mysql profile：切换到 MySQL + Redis（教程"真·生产"路径）
+# 使用方式：
+#   1) 先启动 MySQL 与 Redis（本机已装：mysql.exe / D:\APP\redis\redis-server.exe）
+#   2) 在 MySQL 执行：source schema-mysql.sql;  source data.sql;
+#   3) spring-boot:run -Dspring.profiles.active=mysql
+# 注意：此 profile 关闭了 sql.init，表由上面的 SQL 文件负责
+# ============================================================
+spring:
+  autoconfigure:
+    exclude: ""
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ruoyi?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&characterEncoding=utf8
+    username: root
+    password: root
+  sql:
+    init:
+      mode: never
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+      timeout: 3000ms
+
+jwt:
+  secret: "Zk7qP9xLm2Vb8nRt4Wc6Ys1Ad3Fe5Gh7Jk9Lp0Zx2Cv4Bn6Mq8Tr0Uw1Xy3"
+  expiration-minutes: 720
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.example.admin.domain
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+      table-prefix: ""
+
+logging:
+  level:
+    com.example.admin: debug
+    org.springframework.security: warn
