@@ -1,5 +1,5 @@
 ---
-title: LambdaWrapper 与列安全
+title: 07-LambdaWrapper与列安全
 ---
 
 # 07 LambdaWrapper 与列安全

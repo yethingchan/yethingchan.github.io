@@ -1,5 +1,5 @@
 ---
-title: UpdateWrapper 详解
+title: 06-UpdateWrapper详解
 ---
 
 # 06 UpdateWrapper 详解

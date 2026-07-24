@@ -1,5 +1,5 @@
 ---
-title: IServer 与 ServiceImpl
+title: 04-IServer与ServiceImpl
 ---
 
 # 04 IServer<T> 与 ServiceImpl<M,T>
