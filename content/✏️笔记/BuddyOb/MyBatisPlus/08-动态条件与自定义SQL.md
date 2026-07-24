@@ -4,7 +4,7 @@ title: 动态条件与自定义 SQL
 
 # 08 动态条件与自定义 SQL
 
-> 上接：[[MyBatis-Plus/07-LambdaWrapper与列安全]]
+> 上接：[[MyBatisPlus/07-LambdaWrapper与列安全]]
 > 真实查询都是"用户填了啥才拼啥"。本章讲**动态条件**（condition 参数）和 **Wrapper + 手写 SQL 共存**（复杂联表时）。
 
 ## 8.1 condition 参数（动态拼接核心）
@@ -91,4 +91,4 @@ lw.apply(q.getDate() != null, "DATE(create_time) = {0}", q.getDate());
 - [ ] `apply("DATE(create_time)={0}", date)` 的 `date` 是参数绑定（打印 SQL 显示为 `?`），不是字符串拼接。
 - [ ] 全仓 grep `${`，除 `customSqlSegment` 外无任何 `${}` 拼用户输入。
 
-> 下一步进 L3 高级特性：[[MyBatis-Plus/09-分页插件]]。
+> 下一步进 L3 高级特性：[[MyBatisPlus/09-分页插件]]。

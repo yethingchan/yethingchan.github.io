@@ -4,7 +4,7 @@ title: 代码生成器 AutoGenerator
 
 # 13 代码生成器（FastAutoGenerator）
 
-> 上接：[[MyBatis-Plus/12-逻辑删除与乐观锁]]
+> 上接：[[MyBatisPlus/12-逻辑删除与乐观锁]]
 > 一张表 → Entity / Mapper / Service / Controller 一堆文件，手写累死。**MP 官方生成器**连库读表结构，一键吐全套。本 Spring 教程 06 章的"代码生成器"是手写读 `information_schema`（讲原理），这里给**官方标准做法**（生产用）。
 
 ## 13.1 依赖
@@ -75,7 +75,7 @@ com.example.admin.modules.wms
   ├─ controller/WmsMaterialController.java (基础 CRUD 接口)
   └─ resources/mapper/WmsMaterialMapper.xml (空骨架)
 ```
-> 生成后**直接能跑 CRUD**（MP 接口已就绪）。你再按业务往 Controller/Service 补逻辑即可——这正是 [[../SpringBoot+Vue3后台搭建/06-系统工具]] 那章"代码生成"的最终形态。
+> 生成后**直接能跑 CRUD**（MP 接口已就绪）。你再按业务往 Controller/Service 补逻辑即可——这正是 [[../SpringBoot+Vue3后台搭建/06-系统工具/01-代码生成器|06-系统工具·代码生成器]] 那章"代码生成"的最终形态。
 
 ## 13.4 模板可定制
 
@@ -94,4 +94,4 @@ com.example.admin.modules.wms
 - [ ] 生成的 Controller 是 `@RestController` 且基础 CRUD 接口齐全。
 - [ ] 自定义 `.ftl` 模板后，生成的代码带上了项目约定的注解/返回体。
 
-> 下一步：[[MyBatis-Plus/14-多租户与JSON类型处理器]] 讲 SaaS 多租户隔离和 JSON 字段映射。
+> 下一步：[[MyBatisPlus/14-多租户与JSON类型处理器]] 讲 SaaS 多租户隔离和 JSON 字段映射。

@@ -4,7 +4,7 @@ title: IServer 与 ServiceImpl
 
 # 04 IServer<T> 与 ServiceImpl<M,T>
 
-> 上接：[[MyBatis-Plus/03-BaseMapper的CRUD]]
+> 上接：[[MyBatisPlus/03-BaseMapper的CRUD]]
 > `BaseMapper` 已经够用，但 Service 层再包一层 **`IService` + `ServiceImpl`**，多了一堆批量/链式/分页的便利方法，企业项目几乎都用它（本 Spring 教程的 Service 全是这个写法，见 [[../SpringBoot+Vue3后台搭建/04-权限管理模块/01-用户管理]]）。
 
 ## 4.1 定义
@@ -30,10 +30,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 | `saveBatch(Collection, batchSize)` | 分批提交，防一条 SQL 过长 |
 | `getById` / `getOne(wrapper)` / `getByIdOpt` | 查一个（`Optional`） |
 | `list()` / `list(wrapper)` / `listByIds(ids)` | 查列表 |
-| `page(IPage)` / `page(IPage, wrapper)` | **分页**（见 [[MyBatis-Plus/09-分页插件]]） |
+| `page(IPage)` / `page(IPage, wrapper)` | **分页**（见 [[MyBatisPlus/09-分页插件]]） |
 | `count()` / `count(wrapper)` | 计数 |
 | `updateById` / `update(T,wrapper)` / `update(Wrapper)` | 改 |
-| `removeById` / `remove(wrapper)` / `removeBatchByIds` | 删（逻辑删见 [[MyBatis-Plus/12-逻辑删除与乐观锁]]） |
+| `removeById` / `remove(wrapper)` / `removeBatchByIds` | 删（逻辑删见 [[MyBatisPlus/12-逻辑删除与乐观锁]]） |
 | `lambdaQuery()` / `lambdaUpdate()` / `chainQuery()` | **链式调用**（见 4.4） |
 
 ## 4.3 批量（性能关键）
@@ -77,4 +77,4 @@ userService.lambdaUpdate()
 - [ ] `saveBatch(users, 500)` 比循环 `save` 快一个数量级（大数据量时体感明显）。
 - [ ] `lambdaQuery().eq(...).gt(...).list()` 链式写法跑通，等价于 `selectList(lambdaQuery)`。
 
-> 下一步进入**本库重点**：[[MyBatis-Plus/05-QueryWrapper详解]] 把所有查询条件方法一次讲透。
+> 下一步进入**本库重点**：[[MyBatisPlus/05-QueryWrapper详解]] 把所有查询条件方法一次讲透。

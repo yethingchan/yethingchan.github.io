@@ -4,7 +4,7 @@ title: UpdateWrapper 详解
 
 # 06 UpdateWrapper 详解
 
-> 上接：[[MyBatis-Plus/05-QueryWrapper详解]]
+> 上接：[[MyBatisPlus/05-QueryWrapper详解]]
 > `UpdateWrapper` 用于**"按条件批量改，又不传完整实体"**的场景。核心是 `.set()` 指定要改的列。
 
 ## 6.1 基本：set + eq
@@ -57,7 +57,7 @@ UpdateWrapper<User> uw = Wrappers.update();
 uw.set("status","1");
 userMapper.update(null, uw);   // ❌ 没有 eq/where → 全表 status='1'！
 ```
-> 配合 [[MyBatis-Plus/03-BaseMapper的CRUD]] 的 `BlockAttackInnerInterceptor` 兜底，但**写完 Wrapper 先打印 SQL 核对 WHERE** 才是好习惯。
+> 配合 [[MyBatisPlus/03-BaseMapper的CRUD]] 的 `BlockAttackInnerInterceptor` 兜底，但**写完 Wrapper 先打印 SQL 核对 WHERE** 才是好习惯。
 
 ## 验证清单
 
@@ -65,4 +65,4 @@ userMapper.update(null, uw);   // ❌ 没有 eq/where → 全表 status='1'！
 - [ ] `setSql("login_num = login_num + 1")` 自增生效，库里值 +1 而非被 Java 覆盖。
 - [ ] 漏写 WHERE 时，`BlockAttackInnerInterceptor` 拦截抛异常（而不是全表更新）。
 
-> 下一步：[[MyBatis-Plus/07-LambdaWrapper与列安全]] 用方法引用替代字符串列名，从根上防"列名写错"。
+> 下一步：[[MyBatisPlus/07-LambdaWrapper与列安全]] 用方法引用替代字符串列名，从根上防"列名写错"。

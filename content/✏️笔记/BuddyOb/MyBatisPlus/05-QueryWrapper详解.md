@@ -4,8 +4,8 @@ title: QueryWrapper 详解（★重点）
 
 # 05 QueryWrapper 详解（★ 本库重点）
 
-> 上接：[[MyBatis-Plus/04-IServer与ServiceImpl]]
-> **Wrapper（条件构造器）是 MP 的灵魂**。本章把所有查询条件方法一次讲透，并附"速查表"。更新看 [[MyBatis-Plus/06-UpdateWrapper详解]]，类型安全列看 [[MyBatis-Plus/07-LambdaWrapper与列安全]]。
+> 上接：[[MyBatisPlus/04-IServer与ServiceImpl]]
+> **Wrapper（条件构造器）是 MP 的灵魂**。本章把所有查询条件方法一次讲透，并附"速查表"。更新看 [[MyBatisPlus/06-UpdateWrapper详解]]，类型安全列看 [[MyBatisPlus/07-LambdaWrapper与列安全]]。
 
 ## 5.1 三种拿到 QueryWrapper 的方式
 
@@ -67,7 +67,7 @@ w.notIn("status", "1","2");                    // status NOT IN ('1','2')
 w.inSql("dept_id", "SELECT id FROM sys_dept WHERE status='0'");  // dept_id IN (子查询)
 w.notInSql("user_id", "SELECT user_id FROM sys_role_exclude");
 ```
-> `inSql` / `notInSql` 第二参是**子查询字符串**，注意若拼用户输入有注入风险（用 [[MyBatis-Plus/08-动态条件与自定义SQL]] 的 `apply` 占位更安全）。
+> `inSql` / `notInSql` 第二参是**子查询字符串**，注意若拼用户输入有注入风险（用 [[MyBatisPlus/08-动态条件与自定义SQL]] 的 `apply` 占位更安全）。
 
 ## 5.5 排序 / 分组 / 聚合
 
@@ -143,7 +143,7 @@ List<User> list = userMapper.selectList(w);
 逻辑：  or()  and(Consumer)  nested(Consumer)
 拼接：  apply("{0}",param)  last("SQL")  exists  notExists  select
 ```
-> 全部方法都带 **`boolean condition` 重载**（如 `eq(boolean, col, val)`），`condition=false` 时该条件**整条跳过**——这就是 [[MyBatis-Plus/08-动态条件与自定义SQL]] 的"动态条件"基础。
+> 全部方法都带 **`boolean condition` 重载**（如 `eq(boolean, col, val)`），`condition=false` 时该条件**整条跳过**——这就是 [[MyBatisPlus/08-动态条件与自定义SQL]] 的"动态条件"基础。
 
 ## 验证清单
 
@@ -153,4 +153,4 @@ List<User> list = userMapper.selectList(w);
 - [ ] `nested(...)` 能在 SQL 里正确加出括号。
 - [ ] `select("user_id","user_name")` 后查出来的 `age` 为 null（列没查）。
 
-> 下一步：[[MyBatis-Plus/06-UpdateWrapper详解]] 看"更新"怎么用 Wrapper 不带实体。
+> 下一步：[[MyBatisPlus/06-UpdateWrapper详解]] 看"更新"怎么用 Wrapper 不带实体。

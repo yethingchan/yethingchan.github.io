@@ -4,7 +4,7 @@ title: LambdaWrapper 与列安全
 
 # 07 LambdaWrapper 与列安全
 
-> 上接：[[MyBatis-Plus/06-UpdateWrapper详解]]
+> 上接：[[MyBatisPlus/06-UpdateWrapper详解]]
 > 前面 `QueryWrapper.eq("user_name", ...)` 的**列名是字符串**——拼错字母编译不报错，运行才炸。Lambda 版用**方法引用**取列名，编译期就帮你对。
 
 ## 7.1 四种 Wrapper 关系
@@ -27,7 +27,7 @@ LambdaQueryWrapper<User> lw = Wrappers.lambdaQuery(User.class);
 LambdaUpdateWrapper<User> luw = Wrappers.lambdaUpdate(User.class);
 // 若类型可推断：Wrappers.lambdaQuery() / lambdaUpdate()
 
-// ③ IService 链式（最常用，见 [[MyBatis-Plus/04-IServer与ServiceImpl]] 4.4）
+// ③ IService 链式（最常用，见 [[MyBatisPlus/04-IServer与ServiceImpl]] 4.4）
 userService.lambdaQuery().eq(User::getStatus,"0").list();
 userService.lambdaUpdate().eq(User::getAge,20).set(User::getStatus,"1").update();
 ```
@@ -81,4 +81,4 @@ userService.lambdaUpdate()
 - [ ] 聚合/函数场景正确退回字符串 `QueryWrapper.select("dept_id, COUNT(*) cnt")`。
 - [ ] 链式 `userService.lambdaUpdate().eq(...).set(...).update()` 跑通。
 
-> 下一步：[[MyBatis-Plus/08-动态条件与自定义SQL]] 讲 condition 参数（动态拼条件）、nested/or/and 组合、以及 Wrapper 和手写 SQL 怎么共存。
+> 下一步：[[MyBatisPlus/08-动态条件与自定义SQL]] 讲 condition 参数（动态拼条件）、nested/or/and 组合、以及 Wrapper 和手写 SQL 怎么共存。
