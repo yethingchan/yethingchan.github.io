@@ -4,7 +4,7 @@ title: 11-自动填充MetaObjectHandler
 
 # 11 自动填充（MetaObjectHandler）
 
-> 上接：[[MyBatisPlus/10-主键策略与雪花算法]]
+> 上接：[[10-主键策略与雪花算法]]
 > `createTime`/`updateTime`/`createBy` 几乎每张表都要。MP 的**字段自动填充**让你插/改时不用手 set，由拦截器统一注入。
 
 ## 11.1 实体标注 fill
@@ -109,4 +109,4 @@ userService.save(u);
 - [ ] 手 set 了 `createTime` 再 `save`，Handler **不覆盖**你的显式值（strict 行为）。
 - [ ] 定时任务（无登录人）调 `save` 时 `createBy` 判空不报错。
 
-> 下一步：[[MyBatisPlus/12-逻辑删除与乐观锁]] 用注解让"删除"变"更新"，并防并发改写冲突。
+> 下一步：[[12-逻辑删除与乐观锁]] 用注解让"删除"变"更新"，并防并发改写冲突。

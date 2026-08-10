@@ -4,7 +4,7 @@ title: 03-BaseMapper的CRUD
 
 # 03 BaseMapper 的 CRUD（MP 白给的方法）
 
-> 上接：[[MyBatisPlus/02-实体注解与表映射]]
+> 上接：[[02-实体注解与表映射]]
 > `UserMapper extends BaseMapper<User>` 后，下面这些方法**直接能用**，不用写任何实现。
 
 ## 3.1 增
@@ -57,7 +57,7 @@ List<T> selectByMap(Map<String,Object> map);
 T selectOne(Wrapper<T> wrapper);            // 期望至多 1 条，多条抛异常
 Long selectCount(Wrapper<T> wrapper);       // 计数
 List<T> selectList(Wrapper<T> wrapper);    // 列表（★ 最常用）
-// 分页见 [[MyBatisPlus/09-分页插件]]：IPage<T> selectPage(IPage<T>, Wrapper<T>)
+// 分页见 [[09-分页插件]]：IPage<T> selectPage(IPage<T>, Wrapper<T>)
 ```
 ```java
 User u = userMapper.selectById(1L);
@@ -74,7 +74,7 @@ User q = new User(); q.setStatus("0"); q.setAge(20);
 List<User> list = userMapper.selectList(Wrappers.query(q));
 // 等价 WHERE status='0' AND age=20（null 字段忽略）
 ```
-> 简单等值好用，复杂（like/范围/in）还是老老实实上 [[MyBatisPlus/05-QueryWrapper详解]]。
+> 简单等值好用，复杂（like/范围/in）还是老老实实上 [[05-QueryWrapper详解]]。
 
 ## 3.6 ⚠️ 全表操作防护（企业级必看）
 
@@ -83,7 +83,7 @@ List<User> list = userMapper.selectList(Wrappers.query(q));
 userMapper.delete(Wrappers.query());          // ❌ 清空整张表！
 userMapper.selectList(null);                 // ❌ 全表扫描（数据量大直接拖垮）
 ```
-MP 提供**防全表更新/删除拦截器**（[[MyBatisPlus/15-企业级实战与避坑]] 详述）：
+MP 提供**防全表更新/删除拦截器**（[[15-企业级实战与避坑]] 详述）：
 ```java
 @Bean
 public MybatisPlusInterceptor mpInterceptor() {
@@ -101,4 +101,4 @@ public MybatisPlusInterceptor mpInterceptor() {
 - [ ] `selectOne` 命中多条时抛 `TooManyResultsException`。
 - [ ] 加了 `BlockAttackInnerInterceptor` 后，空 wrapper 全表操作被拦截抛异常。
 
-> 下一步：[[MyBatisPlus/04-IServer与ServiceImpl]] 看比 BaseMapper 更顺手的 Service 层。
+> 下一步：[[04-IServer与ServiceImpl]] 看比 BaseMapper 更顺手的 Service 层。

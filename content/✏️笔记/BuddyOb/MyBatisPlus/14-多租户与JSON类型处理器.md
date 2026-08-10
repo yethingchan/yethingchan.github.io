@@ -4,7 +4,7 @@ title: 14-多租户与JSON类型处理器
 
 # 14 多租户隔离与 JSON 类型处理器
 
-> 上接：[[MyBatisPlus/13-代码生成器AutoGenerator]]
+> 上接：[[13-代码生成器AutoGenerator]]
 > 两个企业高频进阶点：**多租户**（SaaS 一张表给所有客户用，按 `tenant_id` 隔离）和 **JSON 字段**（MySQL 的 JSON 列直接映射成 Java 对象）。
 
 ## 14.1 多租户隔离（TenantLineInnerInterceptor）
@@ -78,7 +78,7 @@ got.getExt().get("theme");   // 直接是 Map，自动反序列化
 |------|------|
 | SaaS 多客户共用表 | `TenantLineInnerInterceptor` + 公共表 `ignoreTable` |
 | 列存 JSON（配置/扩展属性） | `JacksonTypeHandler` + `autoResultMap=true` |
-| 列存枚举 | `@EnumValue`（见 [[MyBatisPlus/02-实体注解与表映射]] 2.5） |
+| 列存枚举 | `@EnumValue`（见 [[02-实体注解与表映射]] 2.5） |
 
 ## 验证清单
 
@@ -87,4 +87,4 @@ got.getExt().get("theme");   // 直接是 Map，自动反序列化
 - [ ] `@TableField(typeHandler=JacksonTypeHandler.class)` + `autoResultMap=true` 后，JSON 列读写自动序列化/反序列化。
 - [ ] 手写 XML 的 JSON 字段在 `resultMap` 显式配了 `typeHandler`（否则查出来是 null）。
 
-> 下一步（收官）：[[MyBatisPlus/15-企业级实战与避坑]] 把生产最该注意的坑一次性列清。
+> 下一步（收官）：[[15-企业级实战与避坑]] 把生产最该注意的坑一次性列清。
